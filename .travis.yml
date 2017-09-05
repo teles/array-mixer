@@ -1,0 +1,13 @@
+language: node_js
+
+node_js:
+  - 7.0
+cache:
+  directories:
+    - node_modules
+
+before_script:
+  - git config --global user.name 'Travis-ci'
+  - git config --global user.email 'josetelesmaciel@gmail.com'
+
+script: bash ./deploy-to-gh-pages.sh
