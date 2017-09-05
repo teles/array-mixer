@@ -1,0 +1,42 @@
+{
+  "name": "array-mixer",
+  "version": "0.1.0",
+  "description": "ArrayMixer is a simple function to reorder a group of arrays in the way you want.",
+  "main": "src/array-mixer.js",
+  "scripts": {
+    "test": "ava src/spec.js"
+  },
+  "ava": {
+    "files": [
+      "src/spec.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit",
+    "source": [
+      "src/array-mixer.js"
+    ],
+    "modules": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teles/array-mixer.git"
+  },
+  "keywords": [
+    "arrays",
+    "es6",
+    "reorder"
+  ],
+  "author": "Teles <josetelesmaciel@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/teles/array-mixer/issues"
+  },
+  "homepage": "https://github.com/teles/array-mixer#readme",
+  "devDependencies": {
+    "ava": "0.22.0",
+    "babel": "6.23.0",
+    "babel-preset-es2015": "6.24.1"
+  }
+}
