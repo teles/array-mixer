@@ -13,4 +13,4 @@ git add release
 ls
 git commit -m "no-issue - updates release files"
 git status
-git push --force "${GH_REFERENCE}" master:master
+git push "${GH_REFERENCE}" master:master

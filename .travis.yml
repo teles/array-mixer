@@ -5,6 +5,7 @@ node_js:
 cache:
   directories:
     - node_modules
+    - CLONED/node_modules
 
 before_script:
   - git config --global user.name 'Travis-ci'
