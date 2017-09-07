@@ -1,0 +1,25 @@
+env:
+    browser: true
+extends: 'eslint:recommended'
+rules:
+    indent:
+        - error
+        - 4
+    linebreak-style:
+        - error
+        - unix
+    quotes:
+        - error
+        - double
+    semi:
+        - error
+        - always
+    eqeqeq:
+        - error
+        - always
+    camelcase:
+        - error
+    no-trailing-spaces:
+        - error
+    curly:
+        - error
