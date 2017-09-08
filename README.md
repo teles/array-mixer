@@ -7,20 +7,20 @@
 Reordene grupos de vetores de forma simples e personalizada.
 
 ```javascript 
-    const animals = ["Alligator", "Bear", "Cat", "Dog", "Elephant"];
-    const colors =  ["Amber", "Blue", "Cyan", "Dim Gray", "Emerald"]; 
+const animals = ["Alligator", "Bear", "Cat", "Dog", "Elephant"];
+const colors =  ["Amber", "Blue", "Cyan", "Dim Gray", "Emerald"]; 
 ```
 
 Use o **ArrayMixer** para ter uma lista misturando esses vetores de forma personalizada. Assim:
  
 ```javascript 
-    let mixedArray = ArrayMixer({A: animals, C: colors}, ["3A", "2C"]);  
+let mixedArray = ArrayMixer({A: animals, C: colors}, ["3A", "2C"]);  
 ``` 
 
 Onde `mixedArray` irá conter:
 
 ```javascript
-  ["Alligator", "Bear", "Cat", "Amber", "Blue"];
+["Alligator", "Bear", "Cat", "Amber", "Blue"];
 ```
 
 ## Instalação
@@ -40,7 +40,7 @@ import ArrayMixer from "array-mixer";
 ### Ou importe o no seu projeto ES5:
 
 ```html
-    <script src="path/to/your/array-mixer-dir/release/array-mixer.es5.min.js" type="text/javascript"></script>
+<script src="path/to/your/array-mixer-dir/release/array-mixer.es5.min.js"></script>
 ```
 
 ## Parâmetros
@@ -57,7 +57,7 @@ Lembra do exemplo [com animais e cores](#arraymixer) ? Supondo que ainda temos e
 As propriedades desse objeto são apelidos para os vetores e seus valores apontam para os vetores originais. Assim:
 
 ```javascript 
-    {C: colors, A:animals}
+{C: colors, A:animals}
 ```
 
 ### parâmetro2 (A sequência esperada pro seu novo vetor)
@@ -67,13 +67,13 @@ O parâmetro2 é onde você define isso. Assim:
 
 
 ```javascript 
-    ["2C", "2A"]
+["2C", "2A"]
 ```
 
 Juntando ambos os parâmetros fica assim:
 
 ```javascript 
-    let mixedArray = ArrayMixer({A: animals, C: colors}, ["2C", "2A"]);  
+ArrayMixer({A: animals, C: colors}, ["2C", "2A"]);  
 ``` 
 
 ## Exemplos de aplicação 
@@ -83,31 +83,31 @@ Misturar animais e cores é um exemplo com finalidade puramente didática. No en
 ### Para cada 7 fotos exiba um anúncio
 
 ```javascript 
-    ArrayMixer({F: fotos, A: anuncios}, ["7F", "A"]);            
+ArrayMixer({F: fotos, A: anuncios}, ["7F", "A"]);            
 ```
 
 ### Para cada 4 parágrafos de texto inclua duas imagens
 
 ```javascript 
-    ArrayMixer({P: paragrafos, I: imagens}, ["4F", "2A"]);            
+ArrayMixer({P: paragrafos, I: imagens}, ["4F", "2A"]);            
 ```
 
 ### Em um grupo de 8 links relacionados reserve as posiçÕes 5 e 6 para links patrocinados
  
 ```javascript 
-    ArrayMixer({R: relacionados, P: patrocinados}, ["4R", "2P", "2R"]);            
+ArrayMixer({R: relacionados, P: patrocinados}, ["4R", "2P", "2R"]);            
 ```
  
 ### Exiba uma lista de músicas incluindo as de mais sucesso a cada 10 músicas
  
 ```javascript 
-    ArrayMixer({M: musicas, S: sucessos}, ["10M", "2S"]);            
+ArrayMixer({M: musicas, S: sucessos}, ["10M", "2S"]);            
 ```
 
 ### Você também pode usar apelidos maiores e o object shorthand do ES6
  
 ```javascript 
-    ArrayMixer({dias, fds}, ["5dias", "2fds"]);            
+ArrayMixer({dias, fds}, ["5dias", "2fds"]);            
 ```
 
 Você pode manipular mais de dois vetores de uma vez só, como no exemplo seguinte:
@@ -116,7 +116,7 @@ Você pode manipular mais de dois vetores de uma vez só, como no exemplo seguin
 ### Exiba fotos de cachorrinhos, gatinhos e pinguins na sequência
 
 ```javascript 
-     ArrayMixer({cachorrinhos, gatinhos, pinguins}, ["cachorrinhos", "gatinhos", "pinguins"]);            
+ArrayMixer({cachorrinhos, gatinhos, pinguins}, ["cachorrinhos", "gatinhos", "pinguins"]);            
 ``` 
 
 * Os vetores mencionados nos exemplos precisam existir para os exemplos funcionem.
