@@ -1,9 +1,12 @@
 ## ArrayMixer
 
+<img src="https://s26.postimg.org/m0r34qpjt/kitchen-blender.png" align="center">
+
+---
+
 [![Build Status](https://travis-ci.org/teles/array-mixer.svg?branch=master)](https://travis-ci.org/teles/array-mixer)
 [![npm](https://img.shields.io/npm/v/array-mixer.svg)]()
 
-<img src="https://s26.postimg.org/m0r34qpjt/kitchen-blender.png" align="center">
 
 ## Tabela de conteúdos
 
@@ -89,31 +92,31 @@ ArrayMixer({A: animals, C: colors}, ["2C", "2A"]);
 
 Misturar animais e cores é um exemplo com finalidade puramente didática. No entanto no mundo real outras aplicações para `ArrayMixer` são simples de encontrar. 
 
-### Para cada 7 fotos exiba um anúncio
+### Exemplo 1) Para cada 7 fotos exiba um anúncio
 
 ```javascript 
 ArrayMixer({F: fotos, A: anuncios}, ["7F", "A"]);            
 ```
 
-### Para cada 4 parágrafos de texto inclua duas imagens
+### Exemplo 2) Para cada 4 parágrafos de texto inclua duas imagens
 
 ```javascript 
 ArrayMixer({P: paragrafos, I: imagens}, ["4F", "2A"]);            
 ```
 
-### Em um grupo de 8 links relacionados reserve as posiçÕes 5 e 6 para links patrocinados
+### Exemplo 3) Em um grupo de 8 links relacionados reserve as posiçÕes 5 e 6 para links patrocinados
  
 ```javascript 
 ArrayMixer({R: relacionados, P: patrocinados}, ["4R", "2P", "2R"]);            
 ```
  
-### Exiba uma lista de músicas incluindo as de mais sucesso a cada 10 músicas
+### Exemplo 4) Exiba uma lista de músicas incluindo as de mais sucesso a cada 10 músicas
  
 ```javascript 
 ArrayMixer({M: musicas, S: sucessos}, ["10M", "2S"]);            
 ```
 
-### Você também pode usar apelidos maiores e o object shorthand do ES6
+### Exemplo 5) Você também pode usar apelidos maiores e o object shorthand do ES6
  
 ```javascript 
 ArrayMixer({dias, fds}, ["5dias", "2fds"]);            
@@ -122,7 +125,7 @@ ArrayMixer({dias, fds}, ["5dias", "2fds"]);
 Você pode manipular mais de dois vetores de uma vez só, como no exemplo seguinte:
 
  
-### Exiba fotos de cachorrinhos, gatinhos e pinguins na sequência
+### Exemplo 6) Exiba fotos de cachorrinhos, gatinhos e pinguins na sequência
 
 ```javascript 
 ArrayMixer({cachorrinhos, gatinhos, pinguins}, ["cachorrinhos", "gatinhos", "pinguins"]);            
