@@ -1,9 +1,17 @@
 ## ArrayMixer
 
-<img src="https://s26.postimg.org/m0r34qpjt/kitchen-blender.png" align="center">
-
 [![Build Status](https://travis-ci.org/teles/array-mixer.svg?branch=master)](https://travis-ci.org/teles/array-mixer)
 [![npm](https://img.shields.io/npm/v/array-mixer.svg)]()
+
+<img src="https://s26.postimg.org/m0r34qpjt/kitchen-blender.png" align="center">
+
+## Tabela de conteúdos
+
+* [Instalação](#instalação)
+* [Parâmetros](#parâmetros)
+* [Exemplos de aplicação](#exemplos-de-aplicação)
+* [Licença](#licença)
+
 
 Reordene grupos de vetores de forma simples e personalizada.
 
@@ -52,7 +60,7 @@ import ArrayMixer from "array-mixer";
 ArrayMixer(parâmetro1, parâmetro2);
 ```
 
-### parâmetro1 (Apelidos para vetores existentes)
+### > parâmetro1 (Apelidos para vetores existentes)
 
 Lembra do exemplo [com animais e cores](#arraymixer) ? Supondo que ainda temos essas variáveis o parâmetro1 é um **objeto javascript**.
 As propriedades desse objeto são apelidos para os vetores e seus valores apontam para os vetores originais. Assim:
@@ -61,7 +69,7 @@ As propriedades desse objeto são apelidos para os vetores e seus valores aponta
 {C: colors, A:animals}
 ```
 
-### parâmetro2 (A sequência esperada pro seu novo vetor)
+### > parâmetro2 (A sequência esperada pro seu novo vetor)
 
 Continuando no mesmo exemplo, vamos supor que você precise de 2 itens de cada um desses vetores. 
 O parâmetro2 é onde você define isso. Assim:
