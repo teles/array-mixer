@@ -3,6 +3,7 @@
 <img src="https://s26.postimg.org/m0r34qpjt/kitchen-blender.png" align="center">
 
 [![Build Status](https://travis-ci.org/teles/array-mixer.svg?branch=master)](https://travis-ci.org/teles/array-mixer)
+[![npm](https://img.shields.io/npm/v/array-mixer.svg)]()
 
 Reordene grupos de vetores de forma simples e personalizada.
 
