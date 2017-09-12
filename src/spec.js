@@ -107,9 +107,9 @@ test("Omits SOME aliases counters on sequence", t => {
     t.deepEqual(mixed[4], musicians[3]);
 });
 
-test("Mixed array cant have more items than sequence sum", t => {
+test("Mixed should have same size as the sum of arrays", t => {
     let mixed = ArrayMixer({M: musicians, C: colors}, ["2C", "4M"]);
-    t.deepEqual(mixed.length, 6);
+    t.deepEqual(mixed.length, musicians.length + colors.length);
 });
 
 test("Combines sibling sentences", t => {
