@@ -5,8 +5,6 @@ dir=CLONED
 git clone https://github.com/teles/array-mixer.git $dir
 cd $dir
 git checkout master
-sed --in-place '/release/d' .gitignore || exit 0
-cat ./.gitignore
 npm install
 npm run release
 git add release
