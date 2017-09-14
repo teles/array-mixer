@@ -6,7 +6,8 @@ const getItemsFromArray = (array) => {
 
 const ArrayMixer = (aliases, sequence) => {
     let [mixedArray, pattern, offsetsByAliases] = [[], /([0-9]+)?([a-zA-Z]+)/, {}];
-    let totalAliases = Object.values(aliases)
+    let totalAliases = Object.keys(aliases)
+            .map(key => aliases[key])
             .map(item => item.length)
             .reduce((total, current) => total + current);
 
