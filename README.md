@@ -1,4 +1,7 @@
-ArrayMixer
+<img src="https://openclipart.org/image/200px/svg_to_png/285955/pteranodon_02.png" align="center">
+
+<h1 align="center">ArrayMixer</h1>
+
 ======================
 
 [![Build Status](https://travis-ci.org/teles/array-mixer.svg?branch=master)](https://travis-ci.org/teles/array-mixer)
