@@ -1,138 +1,158 @@
-## ArrayMixer
+ArrayMixer
+======================
 
-<img src="https://openclipart.org/image/200px/svg_to_png/48673/abc-blocks-petri-lummema-01.png&disposition=attachment" alt="abc blocks petri lummema 01" title="abc blocks petri lummema 01 by  Anonymous ( https://openclipart.org/user-detail/Anonymous )" />
+[! [Build Status] (https://travis-ci.org/teles/array-mixer.svg?branch=master)] (https://travis-ci.org/teles/array-mixer)
+[! [npm] (https://img.shields.io/npm/v/array-mixer.svg)) ()
 
----
+The repository contains the ArrayMixer source code.
+ArrayMixer is a tiny javascript lib with **less than 1kb** made to help ordering groups of arrays in a very personalized manner.
+Powerful and easy to use.
 
-[![Build Status](https://travis-ci.org/teles/array-mixer.svg?branch=master)](https://travis-ci.org/teles/array-mixer)
-[![npm](https://img.shields.io/npm/v/array-mixer.svg)]()
+## Common usage
 
-
-## Tabela de conteúdos
-
-* [Instalação](#instalação)
-* [Parâmetros](#parâmetros)
-* [Exemplos de aplicação](#exemplos-de-aplicação)
-* [Licença](#licença)
-
-
-Reordene grupos de vetores de forma simples e personalizada.
-
-```javascript 
-const animals = ["Alligator", "Bear", "Cat", "Dog", "Elephant"];
-const colors =  ["Amber", "Blue", "Cyan", "Dim Gray", "Emerald"]; 
-```
-
-Use o **ArrayMixer** para ter uma lista misturando esses vetores de forma personalizada. Assim:
- 
-```javascript 
-let mixedArray = ArrayMixer({A: animals, C: colors}, ["3A", "2C"]);  
-``` 
-
-Onde `mixedArray` irá conter:
+Let's think we have two arrays:  **photos** and **adds**.
 
 ```javascript
-["Alligator", "Bear", "Cat", "Amber", "Blue"];
+photos.length === 12; // true
+adds.length === 6; // true
 ```
 
-## Instalação
+Use `ArrayMixer` to create a new array containing **2 photos** followed by **1 add** until the end of both arrays.
 
-### Adicione `ArrayMixer` ao seu projeto npm:
+
+```javascript
+let mixedArray = ArrayMixer({P:photos, A:adds}, ["2P", "1A"]);
+```
+
+So `mixedArray` will contain:
+
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[0]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[1]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=A[0]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[2]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[3]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=A[1]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[4]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[5]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=A[2]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[6]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[7]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=A[3]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[8]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[9]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=A[4]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[10]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[11]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=A[5]&w=78&h=78" align="left" vspace="10">
+
+## Installation
+
+`ArrayMixer` can be used in node projects and web projects.
+
+### Node projects
+
+Requires node version **5.7 or later**.
 
 ```bash
-npm install array-mixer
+npm install array-mixer --save
 ```
 
-### Importe `ArrayMixer` ao seu código ES6:
+Import it to your code using:
 
 ```javascript
 import ArrayMixer from "array-mixer";
 ```
 
-### Ou importe o no seu projeto ES5:
+## Web projects
+
+[Download latest ES5 transpiled version](https://raw.githubusercontent.com/teles/array-mixer/master/release/array-mixer.es5.js).
+
+Import *ES5* transpiled version to your code.
 
 ```html
-<script src="path/to/your/array-mixer-dir/release/array-mixer.es5.min.js"></script>
+<script src = "path/to/your/array-mixer-dir/array-mixer.es5.min.js"> </ script>
 ```
 
-## Parâmetros
+## Parameters
 
-`ArrayMixer` é uma função javascript que espera dois parâmetros obrigatórios.
+<img src="https://placeholdit.imgix.net/~text?txtsize=22&txtclr=fff&bg=c0392b&txt=Aliases&w=100&h=48" align="left">
+<img src="https://placeholdit.imgix.net/~text?txtsize=22&txtclr=fff&bg=3498db&txt=Sequence&w=115&h=48">
 
-```javascript 
-ArrayMixer(parâmetro1, parâmetro2);
+`ArrayMixer` has only two mandatory parameters.
+
+```javascript
+let aliases = {M:myArray, O:otherArray};
+let sequence = ["3M", "50"];
+
+let mixed = ArrayMixer(aliases, sequence);
 ```
 
-### > parâmetro1 (Apelidos para vetores existentes)
 
-Lembra do exemplo [com animais e cores](#arraymixer) ? Supondo que ainda temos essas variáveis o parâmetro1 é um **objeto javascript**.
-As propriedades desse objeto são apelidos para os vetores e seus valores apontam para os vetores originais. Assim:
+### Aliases
 
-```javascript 
-{C: colors, A:animals}
+This parameter **should be** an object with keys used as alias for sequence and key values pointing to avaliable arrays.
+
+
+### Sequence
+
+This parameters uses the aliases defined on **aliases** parameter to create a sequence order to display the arrays.
+
+## Examples
+
+`ArrayMixer` can be used combining different arrays, aliases and sequences.
+The following examples shows some ways to use it.
+
+### Example 1) For every 7 photos display an ad:
+
+```javascript
+ArrayMixer ({F: Photos, A: Ads}, ["7F", "1A"]);
+```
+**or** (as number 1 on sequence can be ommited):
+
+```javascript
+ArrayMixer ({F: Photos, A: Ads}, ["7F", "A"]);
 ```
 
-### > parâmetro2 (A sequência esperada pro seu novo vetor)
+### Example 2) For every 4 paragraphs of text include two images:
 
-Continuando no mesmo exemplo, vamos supor que você precise de 2 itens de cada um desses vetores. 
-O parâmetro2 é onde você define isso. Assim:
-
-
-```javascript 
-["2C", "2A"]
+```javascript
+ArrayMixer ({P: paragraphs, I: images}, ["4F", "2A"]);
 ```
 
-Juntando ambos os parâmetros fica assim:
-
-```javascript 
-ArrayMixer({A: animals, C: colors}, ["2C", "2A"]);  
-``` 
-
-## Exemplos de aplicação 
-
-Misturar animais e cores é um exemplo com finalidade puramente didática. No entanto no mundo real outras aplicações para `ArrayMixer` são simples de encontrar. 
-
-### Exemplo 1) Para cada 7 fotos exiba um anúncio
-
-```javascript 
-ArrayMixer({F: fotos, A: anuncios}, ["7F", "A"]);            
+### Example 3) In a group of 8 related links reserve positions 5 and 6 for sponsored links
+ 
+```javascript
+ArrayMixer ({R: related, P: sponsored}, ["4R", "2P", "2R"]);
+```
+ 
+### Example 4) Display a list of songs including the most successful songs for every 10 songs:
+ 
+```javascript
+ArrayMixer ({M: musics, S: hits}, ["10M", "2S"]);
 ```
 
-### Exemplo 2) Para cada 4 parágrafos de texto inclua duas imagens
-
-```javascript 
-ArrayMixer({P: paragrafos, I: imagens}, ["4F", "2A"]);            
+### Example 5) You can also use larger aliases and the ES6 object shorthand:
+ 
+```javascript
+ArrayMixer ({days, weekend}, ["5days", "2weekend"]);
 ```
 
-### Exemplo 3) Em um grupo de 8 links relacionados reserve as posiçÕes 5 e 6 para links patrocinados
- 
-```javascript 
-ArrayMixer({R: relacionados, P: patrocinados}, ["4R", "2P", "2R"]);            
-```
- 
-### Exemplo 4) Exiba uma lista de músicas incluindo as de mais sucesso a cada 10 músicas
- 
-```javascript 
-ArrayMixer({M: musicas, S: sucessos}, ["10M", "2S"]);            
+You can manipulate more than two vectors at a time, as in the following example:
+
+ 
+### Example 6) View photos of puppies, kittens and penguins in sequence:
+
+```javascript
+ArrayMixer ({puppies, kittens, penguins}, ["puppies", "kittens", "penguins"));
 ```
 
-### Exemplo 5) Você também pode usar apelidos maiores e o object shorthand do ES6
- 
-```javascript 
-ArrayMixer({dias, fds}, ["5dias", "2fds"]);            
-```
-
-Você pode manipular mais de dois vetores de uma vez só, como no exemplo seguinte:
-
- 
-### Exemplo 6) Exiba fotos de cachorrinhos, gatinhos e pinguins na sequência
-
-```javascript 
-ArrayMixer({cachorrinhos, gatinhos, pinguins}, ["cachorrinhos", "gatinhos", "pinguins"]);            
-``` 
-
-* Os vetores mencionados nos exemplos precisam existir para os exemplos funcionem.
- 
-## Licença
+* All arrays mentioned in this section must exist for the examples to work.
+ 
+## License
 
 MIT - Jota Teles - 2017
+
+## Special thanks
+
+* [Willian Ribeiro](https://github.com/willianribeiro);
+* [João Paulo](https://github.com/jpusp);
