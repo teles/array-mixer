@@ -10,24 +10,23 @@ Powerful and easy to use.
 
 ## Table of contents
 
-* [ArrayMixer](array-mixer/README.md#arraymixer)
-  * [Common usage](array-mixer/README.md#common-usage)
-  * [Installation](array-mixer/README.md#installation)
-     * [Node projects](array-mixer/README.md#node-projects)
-  * [Web projects](array-mixer/README.md#web-projects)
-  * [Parameters](array-mixer/README.md#parameters)
-     * [Aliases](array-mixer/README.md#aliases)
-     * [Sequence](array-mixer/README.md#sequence)
-  * [Examples](array-mixer/README.md#examples)
-     * [Example 1) For every 7 photos display an ad:](array-mixer/README.md#example-1-for-every-7-photos-display-an-ad)
-     * [Example 2) For every 4 paragraphs of text include two images:](array-mixer/README.md#example-2-for-every-4-paragraphs-of-text-include-two-images)
-     * [Example 3) In a group of 8 related links reserve positions 5 and 6 for sponsored links](array-mixer/README.md#example-3-in-a-group-of-8-related-links-reserve-positions-5-and-6-for-sponsored-links)
-     * [Example 4) Display a list of songs including the most successful songs for every 10 songs:](array-mixer/README.md#example-4-display-a-list-of-songs-including-the-most-successful-songs-for-every-10-songs)
-     * [Example 5) You can also use larger aliases and the ES6 object shorthand:](array-mixer/README.md#example-5-you-can-also-use-larger-aliases-and-the-es6-object-shorthand)
-     * [Example 6) View photos of puppies, kittens and penguins in sequence:](array-mixer/README.md#example-6-view-photos-of-puppies-kittens-and-penguins-in-sequence)
-  * [License](array-mixer/README.md#license)
-  * [Special thanks](array-mixer/README.md#special-thanks)
-
+* [ArrayMixer](#arraymixer)
+  * [Common usage](#common-usage)
+  * [Installation](#installation)
+     * [Node projects](#node-projects)
+     * [Web projects](#web-projects)
+  * [Parameters](#parameters)
+     * [Aliases](#aliases)
+     * [Sequence](#sequence)
+  * [Examples](#examples)
+     * [Example 1) For every 7 photos display an ad:](#example-1-for-every-7-photos-display-an-ad)
+     * [Example 2) For every 4 paragraphs of text include two images:](#example-2-for-every-4-paragraphs-of-text-include-two-images)
+     * [Example 3) In a group of 8 related links reserve positions 5 and 6 for sponsored links](#example-3-in-a-group-of-8-related-links-reserve-positions-5-and-6-for-sponsored-links)
+     * [Example 4) Display a list of songs including the most successful songs for every 10 songs:](#example-4-display-a-list-of-songs-including-the-most-successful-songs-for-every-10-songs)
+     * [Example 5) You can also use larger aliases and the ES6 object shorthand:](#example-5-you-can-also-use-larger-aliases-and-the-es6-object-shorthand)
+     * [Example 6) View photos of puppies, kittens and penguins in sequence:](#example-6-view-photos-of-puppies-kittens-and-penguins-in-sequence)
+  * [License](#license)
+  * [Special thanks](#special-thanks)
 
 
 ## Common usage
@@ -85,7 +84,7 @@ Import it to your code using:
 import ArrayMixer from "array-mixer";
 ```
 
-## Web projects
+### Web projects
 
 [Download latest ES5 transpiled version](https://raw.githubusercontent.com/teles/array-mixer/master/release/array-mixer.es5.js).
 
