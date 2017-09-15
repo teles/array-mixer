@@ -21,13 +21,13 @@ Powerful and easy to use.
   * [Examples](#examples)
      * [Example 1) For every 7 photos display an ad:](#example-1-for-every-7-photos-display-an-ad)
      * [Example 2) For every 4 paragraphs of text include two images:](#example-2-for-every-4-paragraphs-of-text-include-two-images)
-     * [Example 3) In a group of 8 related links reserve positions 5 and 6 for sponsored links](#example-3-in-a-group-of-8-related-links-reserve-positions-5-and-6-for-sponsored-links)
+     * [Example 3) In a group of 8 related links reserve positions 5 and 6 for sponsored links:](#example-3-in-a-group-of-8-related-links-reserve-positions-5-and-6-for-sponsored-links)
      * [Example 4) Display a list of songs including the most successful songs for every 10 songs:](#example-4-display-a-list-of-songs-including-the-most-successful-songs-for-every-10-songs)
      * [Example 5) You can also use larger aliases and the ES6 object shorthand:](#example-5-you-can-also-use-larger-aliases-and-the-es6-object-shorthand)
      * [Example 6) View photos of puppies, kittens and penguins in sequence:](#example-6-view-photos-of-puppies-kittens-and-penguins-in-sequence)
+  * [Contributing](#contributing)
   * [License](#license)
   * [Special thanks](#special-thanks)
-
 
 ## Common usage
 
@@ -66,7 +66,7 @@ So `mixedArray` will contain:
 <img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[11]&w=78&h=78" align="left" vspace="10">
 <img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=A[5]&w=78&h=78" align="left" vspace="10">
 
-## Installation
+<h2 id="installation">Installation</h2>
 
 `ArrayMixer` can be used in node projects and web projects.
 
@@ -140,14 +140,14 @@ ArrayMixer ({F: Photos, A: Ads}, ["7F", "A"]);
 ArrayMixer ({P: paragraphs, I: images}, ["4F", "2A"]);
 ```
 
-### Example 3) In a group of 8 related links reserve positions 5 and 6 for sponsored links
- 
+### Example 3) In a group of 8 related links reserve positions 5 and 6 for sponsored links:
+
 ```javascript
 ArrayMixer ({R: related, P: sponsored}, ["4R", "2P", "2R"]);
 ```
  
 ### Example 4) Display a list of songs including the most successful songs for every 10 songs:
- 
+
 ```javascript
 ArrayMixer ({M: musics, S: hits}, ["10M", "2S"]);
 ```
@@ -159,7 +159,6 @@ ArrayMixer ({days, weekend}, ["5days", "2weekend"]);
 ```
 
 You can manipulate more than two vectors at a time, as in the following example:
-
  
 ### Example 6) View photos of puppies, kittens and penguins in sequence:
 
@@ -169,6 +168,10 @@ ArrayMixer ({puppies, kittens, penguins}, ["puppies", "kittens", "penguins"));
 
 * All arrays mentioned in this section must exist for the examples to work.
  
+## Contributing
+
+[Coming soon](CONTRIBUTING.md)
+
 ## License
 
 MIT - Jota Teles - 2017
