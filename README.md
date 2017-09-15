@@ -66,7 +66,8 @@ So `mixedArray` will contain:
 <img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[11]&w=78&h=78" align="left" vspace="10">
 <img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=A[5]&w=78&h=78" align="left" vspace="10">
 
-<hr>
+<img src="https://placeholdit.imgix.net/~text?txtsize=0&txtclr=fff&bg=fff&txt=blank&w=10&h=10" vspace="10">
+
 <h2 id="installation">Installation</h2>
 
 `ArrayMixer` can be used in node projects and web projects.
