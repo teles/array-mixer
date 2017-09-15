@@ -93,7 +93,7 @@ import ArrayMixer from "array-mixer";
 Import *ES5* transpiled version to your code.
 
 ```html
-<script src = "path/to/your/array-mixer-dir/array-mixer.es5.min.js"> </ script>
+<script src = "path/to/your/array-mixer-dir/array-mixer.es5.min.js"> </script>
 ```
 
 ## Parameters
