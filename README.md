@@ -170,9 +170,6 @@ let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "pen
 |-----------------------|-----------------------|-----------------------------------|------------------------------------------------------------------------------|
 | [:dog:, :dog:, :dog:] | [:cat:, :cat:, :cat:] | [:penguin:, :penguin:, :penguin:] | [:dog:, :cat:, :penguin:, :dog:, :cat:, :penguin:, :dog:, :cat:, :penguin:] |
 
-> All arrays mentioned in this section must exist for the examples to work.
- 
-
 ### Example 7) Include 1 large photo for every 2 medium size photos followed by 3 small photos:
 
 **Tip:** `ArrayMixer` lets you mix three or more arrays at once.
@@ -200,6 +197,8 @@ ArrayMixer({L:large, M:medium, S:small}, ["2M", "3S", "L"]);
 <img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[8]&w=78&h=78" align="left" vspace="10">
 <img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=27ae60&txt=L[2]&w=78&h=78" align="left" vspace="10">
 </table>
+
+> **Disclaimer*: All arrays mentioned in this section must exist for the examples to work.
 
 ## Contributing
 

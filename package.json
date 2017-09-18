@@ -6,7 +6,9 @@
   "scripts": {
     "test": "ava src/spec.js",
     "release": "babel src --presets babel-preset-env --out-dir release --source-maps --ignore ./src/spec.js --minified",
-    "prepublish": "npm run release"
+    "prepublish": "npm run release",
+    "coverage": "source .generate-coverage.sh",
+    "coverage-to-codacy": "cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage"
   },
   "ava": {
     "files": [
@@ -42,6 +44,10 @@
     "babel-cli": "6.26.0",
     "babel-minify": "0.2.0",
     "babel-preset-env": "1.6.0",
-    "eslint": "4.6.1"
+    "eslint": "4.6.1",
+    "istanbul": "0.4.5",
+    "nyc": "11.2.1",
+    "codacy-coverage": "2.0.2",
+    "remap-istanbul": "0.9.5"
   }
 }
