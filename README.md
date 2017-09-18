@@ -1,6 +1,9 @@
-<img src="https://openclipart.org/image/500px/svg_to_png/287052/array-mixer-logo.png&disposition=attachment" alt="Logo ArrayMixer" title="Logo ArrayMixer by  cliparteles ( https://openclipart.org/user-detail/cliparteles )"  align="center"/>
-
-<h1 align="left">ArrayMixer</h1>
+<h1 align="center">
+  <br>
+   <img src="https://openclipart.org/image/500px/svg_to_png/287052/array-mixer-logo.png&disposition=attachment" alt="Logo ArrayMixer" title="Logo ArrayMixer by  cliparteles ( https://openclipart.org/user-detail/cliparteles )"  align="center"/>  <br>
+  ArrayMixer
+  <br>
+</h1>
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2cbd62dd3c284ce79f6e2c35817bec12)](https://www.codacy.com/app/josetelesmaciel/array-mixer?utm_source=github.com&utm_medium=referral&utm_content=teles/array-mixer&utm_campaign=badger)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/8a941e0f57c047c8a481f4854666b42d)](https://www.codacy.com/app/josetelesmaciel/array-mixer?utm_source=github.com&utm_medium=referral&utm_content=teles/array-mixer&utm_campaign=Badge_Coverage)
