@@ -180,7 +180,7 @@ let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "pen
 ```javascript 
 ArrayMixer({L:large, M:medium, S:small}, ["2M", "3S", "L"]);
 ```
-
+<table>
 <img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=M[0]&w=78&h=78" align="left" vspace="10">
 <img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=M[1]&w=78&h=78" align="left" vspace="10">
 <img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[0]&w=78&h=78" align="left" vspace="10">
@@ -193,7 +193,13 @@ ArrayMixer({L:large, M:medium, S:small}, ["2M", "3S", "L"]);
 <img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[4]&w=78&h=78" align="left" vspace="10">
 <img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[5]&w=78&h=78" align="left" vspace="10">
 <img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=27ae60&txt=L[1]&w=78&h=78" align="left" vspace="10">
-
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=M[4]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=M[4]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[6]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[7]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[8]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=27ae60&txt=L[2]&w=78&h=78" align="left" vspace="10">
+</table>
 
 ## Contributing
 
