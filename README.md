@@ -168,7 +168,7 @@ let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "pen
 |-----------------------|-----------------------|-----------------------------------|------------------------------------------------------------------------------|
 | [:dog:, :dog:, :dog:] | [:cat:, :cat:, :cat:] | [:penguin:, :penguin:, :penguin:] | [:dog:, :cat:, :penguin:, :dog:, :cat:, :penguin:, :dog:, :cat:, :penguin:] |
 
-> :warning: All arrays mentioned in this section must exist for the examples to work.
+> All arrays mentioned in this section must exist for the examples to work.
  
 ## Contributing
 
