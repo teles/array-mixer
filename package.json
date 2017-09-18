@@ -1,14 +1,13 @@
 {
   "name": "array-mixer",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "ArrayMixer is a simple function to reorder a group of arrays in the way you want.",
   "main": "release/array-mixer.min.js",
   "scripts": {
     "test": "ava src/spec.js",
-    "minify": "minify src/array-mixer.js --out-file release/array-mixer.es6.min.js",
-    "transpile": "babel src/array-mixer.js --out-file release/array-mixer.js",
-    "minify-transpiled": "minify release/array-mixer.js --out-file release/array-mixer.min.js",
-    "release": "npm run minify && npm run transpile && npm run minify-transpiled",
+    "dev": "",
+    "transpile": "babel src --presets babel-preset-env --out-dir release --source-maps --ignore ./src/spec.js --minified",
+    "release": "npm run transpile && npm run minify & npm run minify-transpiled",
     "prepublish": "npm run release"
   },
   "ava": {

@@ -29,4 +29,4 @@ const ArrayMixer = (aliases, sequence) => {
     return mixedArray;
 };
 
-export default ArrayMixer;
+module.exports = ArrayMixer;
