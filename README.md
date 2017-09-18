@@ -91,12 +91,12 @@ const ArrayMixer = require("array-mixer");
 
 ### Web projects
 
-[Download latest ES5 transpiled version](https://raw.githubusercontent.com/teles/array-mixer/master/release/array-mixer.es5.js).
+[Download latest ES5 transpiled version from unpkg.com](https://unpkg.com/array-mixer@0.7.2/release/array-mixer.js).
 
 Import *ES5* transpiled version to your code.
 
 ```html
-<script src = "path/to/your/array-mixer-dir/array-mixer.es5.min.js"> </script>
+<script src="https://unpkg.com/array-mixer@0.7.2/release/array-mixer.js"></script>
 ```
 
 ## Parameters
