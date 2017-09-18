@@ -10,24 +10,26 @@ Powerful and easy to use.
 
 ## Table of contents
 
-* [ArrayMixer](#arraymixer)
-  * [Common usage](#common-usage)
-  * [Installation](#installation)
-     * [Node projects](#node-projects)
-     * [Web projects](#web-projects)
-  * [Parameters](#parameters)
-     * [Aliases](#aliases)
-     * [Sequence](#sequence)
-  * [Examples](#examples)
-     * [Example 1) For every 7 photos display an ad:](#example-1-for-every-7-photos-display-an-ad)
-     * [Example 2) For every 4 paragraphs of text include two images:](#example-2-for-every-4-paragraphs-of-text-include-2-images)
-     * [Example 3) In a group of 8 related links reserve positions 5 and 6 for sponsored links:](#example-3-in-a-group-of-8-related-links-reserve-positions-5-and-6-for-sponsored-links)
-     * [Example 4) Display a list of songs including the most successful songs for every 10 songs:](#example-4-display-a-list-of-songs-including-the-most-successful-songs-for-every-10-songs)
-     * [Example 5) You can also use larger aliases and the ES6 object shorthand:](#example-5-you-can-also-use-larger-aliases-and-the-es6-object-shorthand)
-     * [Example 6) View photos of puppies, kittens and penguins in sequence:](#example-6-view-photos-of-puppies-kittens-and-penguins-in-sequence)
-  * [Contributing](#contributing)
-  * [License](#license)
-  * [Special thanks](#special-thanks)
+   * [ArrayMixer](#arraymixer)
+      * [Table of contents](#table-of-contents)
+      * [Common usage](#common-usage)
+      * [Installation](#installation)
+         * [Node projects](#node-projects)
+         * [Web projects](#web-projects)
+      * [Parameters](#parameters)
+         * [Aliases](#aliases)
+         * [Sequence](#sequence)
+      * [Examples](#examples)
+         * [Example 1) For every 7 photos display an ad:](#example-1-for-every-7-photos-display-an-ad)
+         * [Example 2) For every 4 paragraphs of text include 2 images:](#example-2-for-every-4-paragraphs-of-text-include-2-images)
+         * [Example 3) In a group of 8 related links reserve positions 5 and 6 for sponsored links:](#example-3-in-a-group-of-8-related-links-reserve-positions-5-and-6-for-sponsored-links)
+         * [Example 4) Display a list of songs including the most successful songs for every 10 songs:](#example-4-display-a-list-of-songs-including-the-most-successful-songs-for-every-10-songs)
+         * [Example 5) You can also use larger aliases and the ES6 object shorthand:](#example-5-you-can-also-use-larger-aliases-and-the-es6-object-shorthand)
+         * [Example 6) View photos of puppies, kittens and penguins in sequence:](#example-6-view-photos-of-puppies-kittens-and-penguins-in-sequence)
+         * [Example 7) Include 1 large photo for every 2 medium size photos followed by 3 small photos:](#example-7-include-1-large-photo-for-every-2-medium-size-photos-followed-by-3-small-photos)
+      * [Contributing](#contributing)
+      * [License](#license)
+      * [Special thanks](#special-thanks)
 
 ## Common usage
 
@@ -170,6 +172,29 @@ let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "pen
 
 > All arrays mentioned in this section must exist for the examples to work.
  
+
+### Example 7) Include 1 large photo for every 2 medium size photos followed by 3 small photos:
+
+**Tip:** `ArrayMixer` lets you mix three or more arrays at once.
+
+```javascript 
+ArrayMixer({L:large, M:medium, S:small}, ["2M", "3S", "L"]);
+```
+
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=M[0]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=M[1]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[0]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[1]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[2]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=27ae60&txt=L[0]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=M[2]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=M[3]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[3]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[4]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[5]&w=78&h=78" align="left" vspace="10">
+<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=27ae60&txt=L[1]&w=78&h=78" align="left" vspace="10">
+
+
 ## Contributing
 
 [Coming soon](CONTRIBUTING.md)
