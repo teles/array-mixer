@@ -1,4 +1,5 @@
-<img src="https://openclipart.org/image/200px/svg_to_png/285955/pteranodon_02.png" align="left">
+<img src="https://openclipart.org/image/500px/svg_to_png/287052/array-mixer-logo.png&disposition=attachment" alt="Logo ArrayMixer" title="Logo ArrayMixer by  cliparteles ( https://openclipart.org/user-detail/cliparteles )"  align="center"/>
+
 <h1 align="left">ArrayMixer</h1>
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2cbd62dd3c284ce79f6e2c35817bec12)](https://www.codacy.com/app/josetelesmaciel/array-mixer?utm_source=github.com&utm_medium=referral&utm_content=teles/array-mixer&utm_campaign=badger)
