@@ -20,7 +20,7 @@ Powerful and easy to use.
      * [Sequence](#sequence)
   * [Examples](#examples)
      * [Example 1) For every 7 photos display an ad:](#example-1-for-every-7-photos-display-an-ad)
-     * [Example 2) For every 4 paragraphs of text include two images:](#example-2-for-every-4-paragraphs-of-text-include-two-images)
+     * [Example 2) For every 4 paragraphs of text include two images:](#example-2-for-every-4-paragraphs-of-text-include-2-images)
      * [Example 3) In a group of 8 related links reserve positions 5 and 6 for sponsored links:](#example-3-in-a-group-of-8-related-links-reserve-positions-5-and-6-for-sponsored-links)
      * [Example 4) Display a list of songs including the most successful songs for every 10 songs:](#example-4-display-a-list-of-songs-including-the-most-successful-songs-for-every-10-songs)
      * [Example 5) You can also use larger aliases and the ES6 object shorthand:](#example-5-you-can-also-use-larger-aliases-and-the-es6-object-shorthand)
@@ -159,22 +159,18 @@ ArrayMixer({days, weekend}, ["5days", "2weekend"]);
 You can manipulate more than two vectors at a time, as in the following example:
  
 ### Example 6) View photos of puppies, kittens and penguins in sequence:
+
 ```javascript
 let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "penguins"));
 ```
 
-```javascript
-let puppies = [:dog:, :dog:, :dog:];
-let kittens = [:cat:, :cat:, :cat:];
-let penguins = [:penguin:, :penguin:,:penguin:];
-```
-
-The value of `mixed` will be something like:
-
-[:dog:, :cat:, :penguin:, :dog:, :cat:, :penguin:, :dog:, :cat:, :penguin: ]
+| `puppies`               | `kittens`               | `penguins`                          | `mixed` |
+|-----------------------|-----------------------|-----------------------------------|------------------------------------------------------------------------------|
+| [:dog:, :dog:, :dog:] | [:cat:, :cat:, :cat:] | [:penguin:, :penguin:, :penguin:] | [:dog:, :cat:, :penguin:, :dog:, :cat:, :penguin:, :dog:, :cat:, :penguin:] |
 
 
-* All arrays mentioned in this section must exist for the examples to work.
+
+> :alert: All arrays mentioned in this section must exist for the examples to work.
  
 ## Contributing
 
