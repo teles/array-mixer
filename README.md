@@ -1,6 +1,7 @@
 <img src="https://openclipart.org/image/200px/svg_to_png/285955/pteranodon_02.png" align="left">
 <h1 align="left">ArrayMixer</h1>
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2cbd62dd3c284ce79f6e2c35817bec12)](https://www.codacy.com/app/josetelesmaciel/array-mixer?utm_source=github.com&utm_medium=referral&utm_content=teles/array-mixer&utm_campaign=badger)
 [![Build Status](https://travis-ci.org/teles/array-mixer.svg?branch=master)](https://travis-ci.org/teles/array-mixer)
 [![npm](https://img.shields.io/npm/v/array-mixer.svg)]()
 
