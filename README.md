@@ -85,7 +85,7 @@ npm install array-mixer --save
 Import it to your code using:
 
 ```javascript
-import ArrayMixer from "array-mixer";
+const ArrayMixer = require("array-mixer");
 ```
 
 ### Web projects

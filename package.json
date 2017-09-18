@@ -1,6 +1,6 @@
 {
   "name": "array-mixer",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "ArrayMixer is a simple function to reorder a group of arrays in the way you want.",
   "main": "release/array-mixer.js",
   "scripts": {
