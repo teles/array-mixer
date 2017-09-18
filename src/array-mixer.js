@@ -1,7 +1,7 @@
 const getItemsFromArray = (array) => {
     return (size, offset = 0) => new Array(size).fill("").map((item, index) => {
         return array[(index + offset) % array.length];
-    })
+    });
 };
 
 const ArrayMixer = (aliases, sequence) => {
@@ -18,13 +18,15 @@ const ArrayMixer = (aliases, sequence) => {
         return {count, alias};
     });
 
+    let generateMixedArray = (rule) => {
+        let incrementalOffset = typeof offsetsByAliases[rule.alias] !== "undefined" ? offsetsByAliases[rule.alias] : 0;
+        mixedArray = mixedArray.concat(getItemsFromArray(aliases[rule.alias])(Math.min(totalAliases - mixedArray.length, rule.count), offsetsByAliases[rule.alias]));
+        offsetsByAliases[rule.alias] = (rule.count % aliases[rule.alias].length) + incrementalOffset;
+        if (mixedArray.length >= totalAliases) return mixedArray;
+    };
+
     while(mixedArray.length < totalAliases) {
-        rules.forEach(rule => {
-            let incrementalOffset = typeof offsetsByAliases[rule.alias] !== "undefined" ? offsetsByAliases[rule.alias] : 0;
-            mixedArray = mixedArray.concat(getItemsFromArray(aliases[rule.alias])(Math.min(totalAliases - mixedArray.length, rule.count), offsetsByAliases[rule.alias]));
-            offsetsByAliases[rule.alias] = (rule.count % aliases[rule.alias].length) + incrementalOffset;
-            if (mixedArray.length >= totalAliases) return mixedArray;
-        });
+        rules.forEach(rule => generateMixedArray(rule));
     }
     return mixedArray;
 };
