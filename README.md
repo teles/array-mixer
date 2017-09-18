@@ -20,8 +20,6 @@ Powerful and easy to use.
 
 ## Table of contents
 
-[![Join the chat at https://gitter.im/array-mixer/Lobby](https://badges.gitter.im/array-mixer/Lobby.svg)](https://gitter.im/array-mixer/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
   * [Common usage](#common-usage)
   * [Installation](#installation)
      * [Node projects](#node-projects)
