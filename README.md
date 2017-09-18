@@ -105,7 +105,7 @@ Import *ES5* transpiled version to your code.
 
 ```javascript
 let aliases = {M:myArray, O:otherArray};
-let sequence = ["3M", "50"];
+let sequence = ["3M", "5O"];
 
 let mixed = ArrayMixer(aliases, sequence);
 ```
@@ -128,27 +128,27 @@ The following examples shows some ways to use it.
 ### Example 1) For every 7 photos display an ad:
 
 ```javascript
-ArrayMixer({F: Photos, A: Ads}, ["7F", "1A"]);
+ArrayMixer({F: Photos, A: Ads}, ["7P", "1A"]);
 ```
 **or** (as number 1 on sequence can be ommited):
 
 ```javascript
-ArrayMixer({F: Photos, A: Ads}, ["7F", "A"]);
+ArrayMixer({F: Photos, A: Ads}, ["7P", "A"]);
 ```
 
-### Example 2) For every 4 paragraphs of text include two images:
+### Example 2) For every 4 paragraphs of text include 2 images:
 ```javascript
-ArrayMixer({P: paragraphs, I: images}, ["4F", "2A"]);
+ArrayMixer({P: paragraphs, I: images}, ["4P", "2I"]);
 ```
 
 ### Example 3) In a group of 8 related links reserve positions 5 and 6 for sponsored links:
 ```javascript
-ArrayMixer({R: related, P: sponsored}, ["4R", "2P", "2R"]);
+ArrayMixer({R: related, S: sponsored}, ["4R", "2S", "2R"]);
 ```
 
 ### Example 4) Display a list of songs including the most successful songs for every 10 songs:
 ```javascript
-ArrayMixer({M: musics, S: hits}, ["10M", "2S"]);
+ArrayMixer({M: musics, H: hits}, ["10M", "2H"]);
 ```
 
 ### Example 5) You can also use larger aliases and the ES6 object shorthand:
@@ -160,8 +160,19 @@ You can manipulate more than two vectors at a time, as in the following example:
  
 ### Example 6) View photos of puppies, kittens and penguins in sequence:
 ```javascript
-ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "penguins"));
+let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "penguins"));
 ```
+
+> let puppies = [:dog:, :dog:, :dog:];
+
+> let kittens = [:cat:, :cat:, :cat:];
+
+> let penguins = [:penguin:, :penguin:,:penguin:];
+
+The value of `mixed`:**
+
+> [:dog:, :cat:, :penguin:,:dog:, :cat:, :penguin:,:dog:, :cat:, :penguin: ]
+
 
 * All arrays mentioned in this section must exist for the examples to work.
  
