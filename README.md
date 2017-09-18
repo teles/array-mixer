@@ -11,8 +11,8 @@
 </p>
 
 <p align="center">
-This repository contains the **ArrayMixer** source code.
-ArrayMixer is a tiny javascript lib with **less than 1kb** made to help ordering groups of arrays in a very personalized manner.
+  This repository contains the <strong>ArrayMixer</strong> source code.
+  ArrayMixer is a tiny javascript lib with <strong>less than 1kb</strong> made to help ordering groups of arrays in a very personalized manner.
 Powerful and easy to use.
 </p>
 
