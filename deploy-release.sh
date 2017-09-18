@@ -9,6 +9,6 @@ npm install
 npm run release
 git add release
 ls
-git commit -m "no-issue - updates release files"
-git status
-git push "${GH_REFERENCE}" master:master
+#git commit -m "no-issue - updates release files"
+#git status
+#git push "${GH_REFERENCE}" master:master
