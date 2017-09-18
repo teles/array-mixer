@@ -29,6 +29,7 @@ Powerful and easy to use.
          * [Example 5) You can also use larger aliases and the ES6 object shorthand:](#example-5-you-can-also-use-larger-aliases-and-the-es6-object-shorthand)
          * [Example 6) View photos of puppies, kittens and penguins in sequence:](#example-6-view-photos-of-puppies-kittens-and-penguins-in-sequence)
          * [Example 7) Include 1 large photo for every 2 medium size photos followed by 3 small photos:](#example-7-include-1-large-photo-for-every-2-medium-size-photos-followed-by-3-small-photos)
+         * [More examples](#more-examples)
       * [Contributing](#contributing)
       * [License](#license)
       * [Special thanks](#special-thanks)
@@ -200,7 +201,11 @@ ArrayMixer({L:large, M:medium, S:small}, ["2M", "3S", "L"]);
 <img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=27ae60&txt=L[2]&w=78&h=78" align="left" vspace="10">
 </table>
 
-> **Disclaimer*: All arrays mentioned in this section must exist for the examples to work.
+> **Disclaimer**: All arrays mentioned in this section must exist for the examples to work.
+
+### More examples
+
+For more example please check the [specification file](src/spec.js).
 
 ## Contributing
 
