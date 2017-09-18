@@ -3,15 +3,18 @@
    <img src="https://openclipart.org/image/480px/svg_to_png/287053/1505709521.png&disposition=attachment" alt="Logo ArrayMixer" title="Logo ArrayMixer by  cliparteles ( https://openclipart.org/user-detail/cliparteles )" />
   <br>
 </h1>
+<p align="center">
+<a href="https://www.codacy.com/app/josetelesmaciel/array-mixer?utm_source=github.com&utm_medium=referral&utm_content=teles/array-mixer&utm_campaign=badger"<img src="https://api.codacy.com/project/badge/Grade/2cbd62dd3c284ce79f6e2c35817bec12)"></a>
+<a href="https://www.codacy.com/app/josetelesmaciel/array-mixer?utm_source=github.com&utm_medium=referral&utm_content=teles/array-mixer&utm_campaign=Badge_Coverage"><img src="https://api.codacy.com/project/badge/Coverage/8a941e0f57c047c8a481f4854666b42d"></a>
+<a href="https://travis-ci.org/teles/array-mixer"><img src="https://travis-ci.org/teles/array-mixer.svg?branch=master"></a>
+<img src="https://img.shields.io/npm/v/array-mixer.svg">
+</p>
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2cbd62dd3c284ce79f6e2c35817bec12)](https://www.codacy.com/app/josetelesmaciel/array-mixer?utm_source=github.com&utm_medium=referral&utm_content=teles/array-mixer&utm_campaign=badger)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/8a941e0f57c047c8a481f4854666b42d)](https://www.codacy.com/app/josetelesmaciel/array-mixer?utm_source=github.com&utm_medium=referral&utm_content=teles/array-mixer&utm_campaign=Badge_Coverage)
-[![Build Status](https://travis-ci.org/teles/array-mixer.svg?branch=master)](https://travis-ci.org/teles/array-mixer)
-[![npm](https://img.shields.io/npm/v/array-mixer.svg)]()
-
-The repository contains the ArrayMixer source code.
+<p align="center">
+This repository contains the **ArrayMixer** source code.
 ArrayMixer is a tiny javascript lib with **less than 1kb** made to help ordering groups of arrays in a very personalized manner.
 Powerful and easy to use.
+</p>
 
 ## Table of contents
 
