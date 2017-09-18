@@ -163,15 +163,15 @@ You can manipulate more than two vectors at a time, as in the following example:
 let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "penguins"));
 ```
 
-> let puppies = [:dog:, :dog:, :dog:];
+```javascript
+let puppies = [:dog:, :dog:, :dog:];
+let kittens = [:cat:, :cat:, :cat:];
+let penguins = [:penguin:, :penguin:,:penguin:];
+```
 
-> let kittens = [:cat:, :cat:, :cat:];
+The value of `mixed` will be something like:
 
-> let penguins = [:penguin:, :penguin:,:penguin:];
-
-The value of `mixed`:**
-
-> [:dog:, :cat:, :penguin:,:dog:, :cat:, :penguin:,:dog:, :cat:, :penguin: ]
+[:dog:, :cat:, :penguin:, :dog:, :cat:, :penguin:, :dog:, :cat:, :penguin: ]
 
 
 * All arrays mentioned in this section must exist for the examples to work.
