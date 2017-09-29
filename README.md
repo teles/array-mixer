@@ -41,7 +41,6 @@ Powerful and easy to use.
   * [Special thanks](#special-thanks)
 
 ## Common usage
-**[⬆ back to top](#table-of-contents)**
 
 Let's think we have two arrays:  **photos** and **ads**.
 
@@ -85,7 +84,6 @@ So `mixedArray` will contain:
 `ArrayMixer` can be used in node projects and web projects.
 
 ### Node projects
-**[⬆ back to top](#table-of-contents)**
 
 Requires node version **5.7 or later**.
 
@@ -100,7 +98,6 @@ const ArrayMixer = require("array-mixer");
 ```
 
 ### Web projects
-**[⬆ back to top](#table-of-contents)**
 
 [Download latest ES5 transpiled version from unpkg.com](https://unpkg.com/array-mixer@0.7.2/release/array-mixer.js).
 
@@ -111,7 +108,6 @@ Import *ES5* transpiled version to your code.
 ```
 
 ## Parameters
-**[⬆ back to top](#table-of-contents)**
 
 <img src="https://placeholdit.imgix.net/~text?txtsize=22&txtclr=fff&bg=c0392b&txt=Aliases&w=100&h=48" align="left">
 <img src="https://placeholdit.imgix.net/~text?txtsize=22&txtclr=fff&bg=3498db&txt=Sequence&w=115&h=48">
@@ -127,18 +123,15 @@ let mixed = ArrayMixer(aliases, sequence);
 
 
 ### Aliases
-**[⬆ back to top](#table-of-contents)**
 
 This parameter **should be** an object with keys used as alias for sequence and key values pointing to avaliable arrays.
 
 
 ### Sequence
-**[⬆ back to top](#table-of-contents)**
 
 This parameters uses the aliases defined on **aliases** parameter to create a sequence order to display the arrays.
 
 ## Examples
-**[⬆ back to top](#table-of-contents)**
 
 `ArrayMixer` can be used combining different arrays, aliases and sequences.
 The following examples shows some ways to use it.
@@ -221,18 +214,15 @@ ArrayMixer({L:large, M:medium, S:small}, ["2M", "3S", "L"]);
 For more example please check the [specification file](src/spec.js).
 
 ## Contributing
-**[⬆ back to top](#table-of-contents)**
 
 You may contribute in several ways like creating new features, fixing bugs, improving documentation and examples
 or translating any document here to your language. [Find more information in CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
-**[⬆ back to top](#table-of-contents)**
 
 [MIT](LICENSE) - Jota Teles - 2017
 
 ## Special thanks
-**[⬆ back to top](#table-of-contents)**
 
 * [Willian Ribeiro](https://github.com/willianribeiro);
 * [João Paulo](https://github.com/jpusp);
