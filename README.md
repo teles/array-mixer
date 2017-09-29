@@ -223,12 +223,13 @@ For more example please check the [specification file](src/spec.js).
 ## Contributing
 **[⬆ back to top](#table-of-contents)**
 
-[Coming soon](CONTRIBUTING.md)
+You may contribute in several ways like creating new features, fixing bugs, improving documentation and examples
+or translating any document here to your language. [Find more information in CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 **[⬆ back to top](#table-of-contents)**
 
-MIT - Jota Teles - 2017
+[MIT](LICENSE) - Jota Teles - 2017
 
 ## Special thanks
 **[⬆ back to top](#table-of-contents)**
