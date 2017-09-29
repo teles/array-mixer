@@ -65,7 +65,7 @@ Commit messages should includes GitHub number reference and a imperative easy to
 Feel free to use ES2015 and ES2017 features.
 Be sure to correctly transpile the source code to ES5.
 
-`ArrayMixer` has its own [ESLint specifications](.eslint) and they need to be followed. 
+`ArrayMixer` has its own [ESLint specifications](.eslint.yml) and they need to be followed. 
 
 Thank you for reading this.
 
