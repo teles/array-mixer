@@ -59,24 +59,24 @@ let mixedArray = ArrayMixer({P:photos, A:ads}, ["2P", "1A"]);
 So `mixedArray` will contain:
 
 <table>
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[0]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[1]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=A[0]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[2]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[3]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=A[1]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[4]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[5]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=A[2]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[6]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[7]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=A[3]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[8]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[9]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=A[4]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[10]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=P[11]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=A[5]&w=78&h=78" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[0]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[1]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/3498db/fff?text=A[0]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[2]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[3]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/3498db/fff?text=A[1]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[4]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[5]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/3498db/fff?text=A[2]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[6]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[7]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/3498db/fff?text=A[3]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[8]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[9]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/3498db/fff?text=A[4]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[10]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[11]" align="left" vspace="10">
+  <img src="https://via.placeholder.com/78x78.png/3498db/fff?text=A[5]" align="left" vspace="10">
 </table>
 
 <h2 id="installation">Installation</h2>
@@ -109,8 +109,8 @@ Import *ES5* transpiled version to your code.
 
 ## Parameters
 
-<img src="https://placeholdit.imgix.net/~text?txtsize=22&txtclr=fff&bg=c0392b&txt=Aliases&w=100&h=48" align="left">
-<img src="https://placeholdit.imgix.net/~text?txtsize=22&txtclr=fff&bg=3498db&txt=Sequence&w=115&h=48">
+<img src="https://via.placeholder.com/100x48.png/c0392b/fff?text=Aliases" align="left">
+<img src="https://via.placeholder.com/115x48.png/3498db/fff?text=Sequence">
 
 `ArrayMixer` has only two mandatory parameters.
 
@@ -168,14 +168,14 @@ ArrayMixer({days, weekend}, ["5days", "2weekend"]);
 ```
 
 You can manipulate more than two vectors at a time, as in the following example:
- 
+ 
 ### Example 6) View photos of puppies, kittens and penguins in sequence:
 
 ```javascript
 let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "penguins"));
 ```
 
-| `puppies`               | `kittens`               | `penguins`                          | `mixed` |
+| `puppies`               | `kittens`               | `penguins`                          | `mixed` |
 |-----------------------|-----------------------|-----------------------------------|------------------------------------------------------------------------------|
 | [:dog:, :dog:, :dog:] | [:cat:, :cat:, :cat:] | [:penguin:, :penguin:, :penguin:] | [:dog:, :cat:, :penguin:, :dog:, :cat:, :penguin:, :dog:, :cat:, :penguin:] |
 
@@ -187,24 +187,24 @@ let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "pen
 ArrayMixer({L:large, M:medium, S:small}, ["2M", "3S", "L"]);
 ```
 <table>
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=M[0]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=M[1]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[0]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[1]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[2]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=27ae60&txt=L[0]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=M[2]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=M[3]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[3]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[4]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[5]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=27ae60&txt=L[1]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=M[4]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=3498db&txt=M[4]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[6]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[7]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=c0392b&txt=S[8]&w=78&h=78" align="left" vspace="10">
-<img src="https://placeholdit.imgix.net/~text?txtsize=26&txtclr=fff&bg=27ae60&txt=L[2]&w=78&h=78" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/3498db/fff?text=M[0]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/3498db/fff?text=M[1]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[0]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[1]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[2]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/27ae60/fff?text=L[0]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/3498db/fff?text=M[2]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/3498db/fff?text=M[3]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[3]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[4]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[5]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/27ae60/fff?text=L[1]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/3498db/fff?text=M[4]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/3498db/fff?text=M[4]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[6]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[7]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[8]" align="left" vspace="10">
+<img src="https://via.placeholder.com/78x78.png/27ae60/fff?text=L[2]" align="left" vspace="10">
 </table>
 
 > **Disclaimer**: All arrays mentioned in this section must exist for the examples to work.
