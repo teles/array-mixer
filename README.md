@@ -108,8 +108,8 @@ Import *ES5* transpiled version to your code.
 
 ## Parameters
 
-<img src="https://via.placeholder.com/100x48.png/c0392b/fff?text=Aliases" align="left">
-<img src="https://via.placeholder.com/115x48.png/3498db/fff?text=Sequence">
+<img src="./.readme/images/aliases.svg" align="left">
+<img src="./.readme/images/sequence.svg">
 
 `ArrayMixer` has only two mandatory parameters.
 
@@ -176,7 +176,7 @@ let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "pen
 
 | `puppies`               | `kittens`               | `penguins`                          | `mixed` |
 |-----------------------|-----------------------|-----------------------------------|------------------------------------------------------------------------------|
-| [:dog:, :dog:, :dog:] | [:cat:, :cat:, :cat:] | [:penguin:, :penguin:, :penguin:] | [:dog:, :cat:, :penguin:, :dog:, :cat:, :penguin:, :dog:, :cat:, :penguin:] |
+| [🐶, 🐶, 🐶] | [🐱, 🐱, 🐱] | [🐧, 🐧, 🐧] | [🐶, 🐱, 🐧, 🐶, 🐱, 🐧, 🐶, 🐱, 🐧] |
 
 ### Example 7) Include 1 large photo for every 2 medium size photos followed by 3 small photos:
 
