@@ -202,7 +202,7 @@ ArrayMixer({L:large, M:medium, S:small}, ["2M", "3S", "L"]);
 <img src="./.readme/images/s6.svg" align="left">
 <img src="./.readme/images/s7.svg" align="left">
 <img src="./.readme/images/s8.svg" align="left">
-<img src="./.readme/images/l2.svg" align="left">
+<img src="./.readme/images/l2.svg">
 
 > **Disclaimer**: All arrays mentioned in this section must exist for the examples to work.
 
