@@ -185,24 +185,24 @@ let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "pen
 ArrayMixer({L:large, M:medium, S:small}, ["2M", "3S", "L"]);
 ```
 
-<img src="./.readme/images/m0.svg">
-<img src="./.readme/images/m1.svg">
-<img src="./.readme/images/s0.svg">
-<img src="./.readme/images/s1.svg">
-<img src="./.readme/images/s2.svg">
-<img src="./.readme/images/l0.svg">
-<img src="./.readme/images/m2.svg">
-<img src="./.readme/images/m3.svg">
-<img src="./.readme/images/s3.svg">
-<img src="./.readme/images/s4.svg">
-<img src="./.readme/images/s5.svg">
-<img src="./.readme/images/l1.svg">
-<img src="./.readme/images/m4.svg">
-<img src="./.readme/images/m4.svg">
-<img src="./.readme/images/s6.svg">
-<img src="./.readme/images/s7.svg">
-<img src="./.readme/images/s8.svg">
-<img src="./.readme/images/l2.svg">
+<img src="./.readme/images/m0.svg" align="left">
+<img src="./.readme/images/m1.svg" align="left">
+<img src="./.readme/images/s0.svg" align="left">
+<img src="./.readme/images/s1.svg" align="left">
+<img src="./.readme/images/s2.svg" align="left">
+<img src="./.readme/images/l0.svg" align="left">
+<img src="./.readme/images/m2.svg" align="left">
+<img src="./.readme/images/m3.svg" align="left">
+<img src="./.readme/images/s3.svg" align="left">
+<img src="./.readme/images/s4.svg" align="left">
+<img src="./.readme/images/s5.svg" align="left">
+<img src="./.readme/images/l1.svg" align="left">
+<img src="./.readme/images/m4.svg" align="left">
+<img src="./.readme/images/m4.svg" align="left">
+<img src="./.readme/images/s6.svg" align="left">
+<img src="./.readme/images/s7.svg" align="left">
+<img src="./.readme/images/s8.svg" align="left">
+<img src="./.readme/images/l2.svg" align="left">
 
 > **Disclaimer**: All arrays mentioned in this section must exist for the examples to work.
 
