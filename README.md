@@ -57,7 +57,7 @@ let mixedArray = ArrayMixer({P:photos, A:ads}, ["2P", "1A"]);
 ```
 
 So `mixedArray` will contain:
-<div style="display: flex;flex-wrap: wrap;">
+<div>
   <img src="./.readme/images/p0.svg" align="left">
   <img src="./.readme/images/p1.svg" align="left">
   <img src="./.readme/images/a0.svg" align="left">
@@ -75,8 +75,9 @@ So `mixedArray` will contain:
   <img src="./.readme/images/a4.svg" align="left">
   <img src="./.readme/images/p10.svg" align="left">
   <img src="./.readme/images/p11.svg" align="left">
-  <img src="./.readme/images/a5.svg">
+  <img src="./.readme/images/a5.svg" align="auto">
 </div>
+<hr>
 
 <h2 id="installation">Installation</h2>
 
@@ -185,7 +186,7 @@ let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "pen
 ```javascript 
 ArrayMixer({L:large, M:medium, S:small}, ["2M", "3S", "L"]);
 ```
-<div style="display: flex;flex-wrap: wrap;">
+<div>
   <img src="./.readme/images/m0.svg" align="left">
   <img src="./.readme/images/m1.svg" align="left">
   <img src="./.readme/images/s0.svg" align="left">
