@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-   <img src="https://openclipart.org/image/480px/svg_to_png/287053/1505709521.png&disposition=attachment" alt="Logo ArrayMixer" title="Logo ArrayMixer by  cliparteles ( https://openclipart.org/user-detail/cliparteles )" />
+   <img src="./.readme/images/logo.png" alt="Logo ArrayMixer" title="Logo ArrayMixer by  cliparteles ( https://openclipart.org/user-detail/cliparteles )" />
   <br>
 </h1>
 <p align="center">  
@@ -57,27 +57,26 @@ let mixedArray = ArrayMixer({P:photos, A:ads}, ["2P", "1A"]);
 ```
 
 So `mixedArray` will contain:
-
-<table>
-  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[0]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[1]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/3498db/fff?text=A[0]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[2]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[3]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/3498db/fff?text=A[1]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[4]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[5]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/3498db/fff?text=A[2]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[6]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[7]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/3498db/fff?text=A[3]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[8]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[9]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/3498db/fff?text=A[4]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[10]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=P[11]" align="left" vspace="10">
-  <img src="https://via.placeholder.com/78x78.png/3498db/fff?text=A[5]" align="left" vspace="10">
-</table>
+<div>
+  <img src="./.readme/images/p0.svg" align="left">
+  <img src="./.readme/images/p1.svg" align="left">
+  <img src="./.readme/images/a0.svg" align="left">
+  <img src="./.readme/images/p2.svg" align="left">
+  <img src="./.readme/images/p3.svg" align="left">
+  <img src="./.readme/images/a1.svg" align="left">
+  <img src="./.readme/images/p4.svg" align="left">
+  <img src="./.readme/images/p5.svg" align="left">
+  <img src="./.readme/images/a2.svg" align="left">
+  <img src="./.readme/images/p6.svg" align="left">
+  <img src="./.readme/images/p7.svg" align="left">
+  <img src="./.readme/images/a3.svg" align="left">
+  <img src="./.readme/images/p8.svg" align="left">
+  <img src="./.readme/images/p9.svg" align="left">
+  <img src="./.readme/images/a4.svg" align="left">
+  <img src="./.readme/images/p10.svg" align="left">
+  <img src="./.readme/images/p11.svg" align="left">
+  <img src="./.readme/images/a5.svg" align="auto">
+</div>
 
 <h2 id="installation">Installation</h2>
 
@@ -109,8 +108,8 @@ Import *ES5* transpiled version to your code.
 
 ## Parameters
 
-<img src="https://via.placeholder.com/100x48.png/c0392b/fff?text=Aliases" align="left">
-<img src="https://via.placeholder.com/115x48.png/3498db/fff?text=Sequence">
+<img src="./.readme/images/aliases.svg" align="left">
+<img src="./.readme/images/sequence.svg">
 
 `ArrayMixer` has only two mandatory parameters.
 
@@ -177,7 +176,7 @@ let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "pen
 
 | `puppies`               | `kittens`               | `penguins`                          | `mixed` |
 |-----------------------|-----------------------|-----------------------------------|------------------------------------------------------------------------------|
-| [:dog:, :dog:, :dog:] | [:cat:, :cat:, :cat:] | [:penguin:, :penguin:, :penguin:] | [:dog:, :cat:, :penguin:, :dog:, :cat:, :penguin:, :dog:, :cat:, :penguin:] |
+| [🐶, 🐶, 🐶] | [🐱, 🐱, 🐱] | [🐧, 🐧, 🐧] | [🐶, 🐱, 🐧, 🐶, 🐱, 🐧, 🐶, 🐱, 🐧] |
 
 ### Example 7) Include 1 large photo for every 2 medium size photos followed by 3 small photos:
 
@@ -186,26 +185,26 @@ let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "pen
 ```javascript 
 ArrayMixer({L:large, M:medium, S:small}, ["2M", "3S", "L"]);
 ```
-<table>
-<img src="https://via.placeholder.com/78x78.png/3498db/fff?text=M[0]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/3498db/fff?text=M[1]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[0]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[1]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[2]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/27ae60/fff?text=L[0]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/3498db/fff?text=M[2]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/3498db/fff?text=M[3]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[3]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[4]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[5]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/27ae60/fff?text=L[1]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/3498db/fff?text=M[4]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/3498db/fff?text=M[4]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[6]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[7]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/c0392b/fff?text=S[8]" align="left" vspace="10">
-<img src="https://via.placeholder.com/78x78.png/27ae60/fff?text=L[2]" align="left" vspace="10">
-</table>
+<div>
+  <img src="./.readme/images/m0.svg" align="left">
+  <img src="./.readme/images/m1.svg" align="left">
+  <img src="./.readme/images/s0.svg" align="left">
+  <img src="./.readme/images/s1.svg" align="left">
+  <img src="./.readme/images/s2.svg" align="left">
+  <img src="./.readme/images/l0.svg" align="left">
+  <img src="./.readme/images/m2.svg" align="left">
+  <img src="./.readme/images/m3.svg" align="left">
+  <img src="./.readme/images/s3.svg" align="left">
+  <img src="./.readme/images/s4.svg" align="left">
+  <img src="./.readme/images/s5.svg" align="left">
+  <img src="./.readme/images/l1.svg" align="left">
+  <img src="./.readme/images/m4.svg" align="left">
+  <img src="./.readme/images/m4.svg" align="left">
+  <img src="./.readme/images/s6.svg" align="left">
+  <img src="./.readme/images/s7.svg" align="left">
+  <img src="./.readme/images/s8.svg" align="left">
+  <img src="./.readme/images/l2.svg">
+</div>
 
 > **Disclaimer**: All arrays mentioned in this section must exist for the examples to work.
 

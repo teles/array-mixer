@@ -1,0 +1,6 @@
+<svg width="120" height="48" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 48">
+    <rect width="120" height="48" fill="#3498db"></rect>
+    <text x="60" y="24" font-family="Arial" font-size="20" fill="white" text-anchor="middle" alignment-baseline="middle">
+        Sequence
+    </text>
+</svg>

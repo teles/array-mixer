@@ -8,6 +8,7 @@
     "release": "babel src --presets babel-preset-env --out-dir release --source-maps --ignore ./src/spec.js --minified",
     "prepublish": "npm run release",
     "coverage": "source .generate-coverage.sh",
+    "readme": "tsc && node ./.readme/generateImages.js",
     "coverage-to-codacy": "cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage"
   },
   "ava": {
@@ -39,15 +40,19 @@
   },
   "homepage": "https://github.com/teles/array-mixer#readme",
   "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/pug": "^2.0.10",
     "ava": "0.22.0",
     "babel": "6.23.0",
     "babel-cli": "6.26.0",
     "babel-minify": "0.2.0",
     "babel-preset-env": "1.6.0",
+    "codacy-coverage": "2.0.2",
     "eslint": "6.8.0",
     "istanbul": "0.4.5",
     "nyc": "11.2.1",
-    "codacy-coverage": "2.0.2",
-    "remap-istanbul": "0.9.5"
+    "pug": "^3.0.3",
+    "remap-istanbul": "0.9.5",
+    "typescript": "^5.4.5"
   }
 }

@@ -4,3 +4,5 @@
 /.idea/
 /coverage/
 /.nyc_output/
+/.readme/**.js
+.DS_Store
