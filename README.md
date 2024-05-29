@@ -77,7 +77,6 @@ So `mixedArray` will contain:
   <img src="./.readme/images/p11.svg" align="left">
   <img src="./.readme/images/a5.svg" align="auto">
 </div>
-<br><br><br>
 
 <h2 id="installation">Installation</h2>
 
