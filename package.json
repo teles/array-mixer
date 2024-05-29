@@ -50,7 +50,7 @@
     "codacy-coverage": "2.0.2",
     "eslint": "6.8.0",
     "istanbul": "0.4.5",
-    "nyc": "11.2.1",
+    "nyc": "15.1.0",
     "pug": "^3.0.3",
     "remap-istanbul": "0.9.5",
     "typescript": "^5.4.5"
