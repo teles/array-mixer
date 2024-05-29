@@ -57,25 +57,26 @@ let mixedArray = ArrayMixer({P:photos, A:ads}, ["2P", "1A"]);
 ```
 
 So `mixedArray` will contain:
-
-<img src="./.readme/images/p0.svg">
-<img src="./.readme/images/p1.svg">
-<img src="./.readme/images/a0.svg">
-<img src="./.readme/images/p2.svg">
-<img src="./.readme/images/p3.svg">
-<img src="./.readme/images/a1.svg">
-<img src="./.readme/images/p4.svg">
-<img src="./.readme/images/p5.svg">
-<img src="./.readme/images/a2.svg">
-<img src="./.readme/images/p6.svg">
-<img src="./.readme/images/p7.svg">
-<img src="./.readme/images/a3.svg">
-<img src="./.readme/images/p8.svg">
-<img src="./.readme/images/p9.svg">
-<img src="./.readme/images/a4.svg">
-<img src="./.readme/images/p10.svg">
-<img src="./.readme/images/p11.svg">
-<img src="./.readme/images/a5.svg">
+<div>
+  <img src="./.readme/images/p0.svg" align="left">
+  <img src="./.readme/images/p1.svg" align="left">
+  <img src="./.readme/images/a0.svg" align="left">
+  <img src="./.readme/images/p2.svg" align="left">
+  <img src="./.readme/images/p3.svg" align="left">
+  <img src="./.readme/images/a1.svg" align="left">
+  <img src="./.readme/images/p4.svg" align="left">
+  <img src="./.readme/images/p5.svg" align="left">
+  <img src="./.readme/images/a2.svg" align="left">
+  <img src="./.readme/images/p6.svg" align="left">
+  <img src="./.readme/images/p7.svg" align="left">
+  <img src="./.readme/images/a3.svg" align="left">
+  <img src="./.readme/images/p8.svg" align="left">
+  <img src="./.readme/images/p9.svg" align="left">
+  <img src="./.readme/images/a4.svg" align="left">
+  <img src="./.readme/images/p10.svg" align="left">
+  <img src="./.readme/images/p11.svg" align="left">
+  <img src="./.readme/images/a5.svg">
+</div>
 
 <h2 id="installation">Installation</h2>
 
@@ -184,25 +185,26 @@ let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "pen
 ```javascript 
 ArrayMixer({L:large, M:medium, S:small}, ["2M", "3S", "L"]);
 ```
-
-<img src="./.readme/images/m0.svg" align="left">
-<img src="./.readme/images/m1.svg" align="left">
-<img src="./.readme/images/s0.svg" align="left">
-<img src="./.readme/images/s1.svg" align="left">
-<img src="./.readme/images/s2.svg" align="left">
-<img src="./.readme/images/l0.svg" align="left">
-<img src="./.readme/images/m2.svg" align="left">
-<img src="./.readme/images/m3.svg" align="left">
-<img src="./.readme/images/s3.svg" align="left">
-<img src="./.readme/images/s4.svg" align="left">
-<img src="./.readme/images/s5.svg" align="left">
-<img src="./.readme/images/l1.svg" align="left">
-<img src="./.readme/images/m4.svg" align="left">
-<img src="./.readme/images/m4.svg" align="left">
-<img src="./.readme/images/s6.svg" align="left">
-<img src="./.readme/images/s7.svg" align="left">
-<img src="./.readme/images/s8.svg" align="left">
-<img src="./.readme/images/l2.svg">
+<div>
+  <img src="./.readme/images/m0.svg" align="left">
+  <img src="./.readme/images/m1.svg" align="left">
+  <img src="./.readme/images/s0.svg" align="left">
+  <img src="./.readme/images/s1.svg" align="left">
+  <img src="./.readme/images/s2.svg" align="left">
+  <img src="./.readme/images/l0.svg" align="left">
+  <img src="./.readme/images/m2.svg" align="left">
+  <img src="./.readme/images/m3.svg" align="left">
+  <img src="./.readme/images/s3.svg" align="left">
+  <img src="./.readme/images/s4.svg" align="left">
+  <img src="./.readme/images/s5.svg" align="left">
+  <img src="./.readme/images/l1.svg" align="left">
+  <img src="./.readme/images/m4.svg" align="left">
+  <img src="./.readme/images/m4.svg" align="left">
+  <img src="./.readme/images/s6.svg" align="left">
+  <img src="./.readme/images/s7.svg" align="left">
+  <img src="./.readme/images/s8.svg" align="left">
+  <img src="./.readme/images/l2.svg">
+</div>
 
 > **Disclaimer**: All arrays mentioned in this section must exist for the examples to work.
 
