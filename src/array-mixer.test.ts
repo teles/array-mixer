@@ -139,3 +139,41 @@ describe("arrayMixer (options)", () => {
         expect(arrayMixer({ limit: 5 })).toEqual([]);
     });
 });
+
+describe("arrayMixer (runtime validation)", () => {
+    test("rejects non-positive counts", () => {
+        expect(() => arrayMixer([0, colors])).toThrow(
+            "arrayMixer entry at index 0 must use a positive integer count; received 0.",
+        );
+        expect(() => arrayMixer([-2, colors])).toThrow(
+            "arrayMixer entry at index 0 must use a positive integer count; received -2.",
+        );
+    });
+
+    test("rejects fractional counts and limits", () => {
+        expect(() => arrayMixer([1.5, colors])).toThrow(
+            "arrayMixer entry at index 0 must use a positive integer count; received 1.5.",
+        );
+        expect(() => arrayMixer([1, colors], { limit: 2.5 })).toThrow(
+            'arrayMixer option "limit" must be a non-negative integer; received 2.5.',
+        );
+    });
+
+    test("rejects invalid fill and shuffle options", () => {
+        expect(() => arrayMixer([1, colors], { fill: "loop" as never })).toThrow(
+            'arrayMixer option "fill" must be one of "repeat", "skip", or "stop"; received "loop".',
+        );
+        expect(() => arrayMixer([1, colors], { shuffle: "yes" as never })).toThrow(
+            'arrayMixer option "shuffle" must be a boolean; received "yes".',
+        );
+    });
+
+    test("rejects malformed runtime entries", () => {
+        expect(() => arrayMixer(["bad", colors] as never)).toThrow(
+            'arrayMixer entry at index 0 must use a positive integer count; received "bad".',
+        );
+        expect(() => arrayMixer([1, "not-array"] as never)).toThrow(
+            "arrayMixer entry at index 0 must provide an array of items as its second value.",
+        );
+    });
+});

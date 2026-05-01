@@ -24,13 +24,66 @@ export interface MixerOptions {
     fill?: FillStrategy;
 }
 
-type AnyMixArgs<T> = MixEntry<T>[] | [...MixEntry<T>[], MixerOptions];
+type AnyMixArgs<T> = Array<MixEntry<T> | MixerOptions>;
 
-const isMixEntry = (value: unknown): value is MixEntry<unknown> =>
-    Array.isArray(value) &&
-    value.length === 2 &&
-    typeof value[0] === "number" &&
-    Array.isArray(value[1]);
+const fillStrategies = new Set<FillStrategy>(["repeat", "skip", "stop"]);
+
+const isOptionsObject = (value: unknown): value is MixerOptions =>
+    typeof value === "object" && value !== null && !Array.isArray(value);
+
+const formatValue = (value: unknown): string => {
+    if (typeof value === "string") return `"${value}"`;
+    if (typeof value === "number" && Number.isNaN(value)) return "NaN";
+    return String(value);
+};
+
+const validateOptions = (options: MixerOptions): void => {
+    if (
+        options.limit !== undefined &&
+        (!Number.isInteger(options.limit) || options.limit < 0)
+    ) {
+        throw new RangeError(
+            `arrayMixer option "limit" must be a non-negative integer; received ${formatValue(options.limit)}.`,
+        );
+    }
+
+    if (options.fill !== undefined && !fillStrategies.has(options.fill)) {
+        throw new TypeError(
+            `arrayMixer option "fill" must be one of "repeat", "skip", or "stop"; received ${formatValue(options.fill)}.`,
+        );
+    }
+
+    if (options.shuffle !== undefined && typeof options.shuffle !== "boolean") {
+        throw new TypeError(
+            `arrayMixer option "shuffle" must be a boolean; received ${formatValue(options.shuffle)}.`,
+        );
+    }
+};
+
+const validateEntries = <T>(entries: unknown[]): MixEntry<T>[] =>
+    entries.map((entry, index) => {
+        if (!Array.isArray(entry) || entry.length !== 2) {
+            throw new TypeError(
+                `arrayMixer entry at index ${index} must be a [count, items] tuple.`,
+            );
+        }
+
+        const [count, items] = entry;
+
+        if (!Number.isInteger(count) || count <= 0) {
+            throw new RangeError(
+                `arrayMixer entry at index ${index} must use a positive integer count; received ${formatValue(count)}.`,
+            );
+        }
+
+        if (!Array.isArray(items)) {
+            throw new TypeError(
+                `arrayMixer entry at index ${index} must provide an array of items as its second value.`,
+            );
+        }
+
+        return entry as unknown as MixEntry<T>;
+    });
 
 const shuffleArray = <T>(arr: T[]): T[] => {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -58,9 +111,11 @@ export function arrayMixer<T>(...args: MixEntry<T>[]): T[];
 export function arrayMixer<T>(...args: [...MixEntry<T>[], MixerOptions]): T[];
 export function arrayMixer<T>(...args: AnyMixArgs<T>): T[] {
     const last = args[args.length - 1];
-    const hasOptions = last !== undefined && !isMixEntry(last);
+    const hasOptions = isOptionsObject(last);
     const options: MixerOptions = hasOptions ? (last as MixerOptions) : {};
-    const entries = (hasOptions ? args.slice(0, -1) : args) as MixEntry<T>[];
+    validateOptions(options);
+
+    const entries = validateEntries<T>(hasOptions ? args.slice(0, -1) : args);
 
     if (entries.length === 0) return [];
 

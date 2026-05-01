@@ -127,7 +127,7 @@ type MixEntry<T> = readonly [count: number, items: readonly T[]];
 
 A tuple with two fields:
 
-- `count` — how many items of this group to emit per round.
+- `count` — how many items of this group to emit per round. Must be a positive integer.
 - `items` — the source array.
 
 ### `MixerOptions`
@@ -145,6 +145,12 @@ interface MixerOptions {
 | `limit`   | sum of input lengths | Forces a fixed result length. Useful for infinite feeds. |
 | `shuffle` | `false`     | Shuffles each input array (Fisher–Yates) before mixing. Inputs are not mutated. |
 | `fill`    | `"repeat"`  | What to do when an entry's source runs out: `"repeat"` cycles from the start, `"skip"` removes that group from further rounds, `"stop"` ends the result. |
+
+Invalid runtime input throws clear errors:
+
+- `count` must be a positive integer.
+- `limit`, when provided, must be a non-negative integer.
+- `fill`, when provided, must be `"repeat"`, `"skip"`, or `"stop"`.
 
 ## Examples
 

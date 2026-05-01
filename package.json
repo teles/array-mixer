@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Tiny TypeScript-friendly utility to interleave arrays in a fully customizable order.",
     "type": "module",
-    "main": "./release/array-mixer.cjs.js",
+    "main": "./release/array-mixer.cjs",
     "module": "./release/array-mixer.es.js",
     "types": "./release/array-mixer.d.ts",
     "unpkg": "./release/array-mixer.umd.js",
@@ -11,7 +11,7 @@
         ".": {
             "types": "./release/array-mixer.d.ts",
             "import": "./release/array-mixer.es.js",
-            "require": "./release/array-mixer.cjs.js"
+            "require": "./release/array-mixer.cjs"
         }
     },
     "files": [
@@ -51,7 +51,7 @@
         "@vitest/coverage-v8": "^1.6.0",
         "pug": "^3.0.3",
         "tsx": "^4.11.0",
-        "typescript": "^5.4.5",
+        "typescript": "5.4.5",
         "vite": "^5.2.11",
         "vite-plugin-dts": "^3.9.1",
         "vitest": "^1.6.0"

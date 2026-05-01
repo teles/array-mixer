@@ -7,7 +7,9 @@ export default defineConfig({
         lib: {
             entry: resolve(__dirname, "src/array-mixer.ts"),
             name: "ArrayMixer",
-            fileName: (format) => `array-mixer.${format}.js`,
+            fileName: (format) => (
+                format === "cjs" ? "array-mixer.cjs" : `array-mixer.${format}.js`
+            ),
             formats: ["es", "cjs", "umd"],
         },
         sourcemap: true,
