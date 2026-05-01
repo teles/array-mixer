@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "Tiny TypeScript-friendly utility to interleave arrays in a fully customizable order.",
     "type": "module",
+    "packageManager": "pnpm@10.22.0",
     "main": "./release/array-mixer.cjs",
     "module": "./release/array-mixer.es.js",
     "types": "./release/array-mixer.d.ts",
@@ -25,8 +26,13 @@
         "test:watch": "vitest",
         "coverage": "vitest run --coverage",
         "typecheck": "tsc --noEmit",
-        "prepublishOnly": "npm run typecheck && npm run test && npm run build",
+        "prepublishOnly": "pnpm run typecheck && pnpm run test && pnpm run build",
         "readme": "tsx ./.readme/generateImages.ts"
+    },
+    "pnpm": {
+        "onlyBuiltDependencies": [
+            "esbuild"
+        ]
     },
     "repository": {
         "type": "git",

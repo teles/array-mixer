@@ -50,7 +50,7 @@ Why the change:
 ## Installation
 
 ```bash
-npm install array-mixer
+pnpm add array-mixer
 ```
 
 ```ts
