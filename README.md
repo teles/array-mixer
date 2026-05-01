@@ -18,6 +18,7 @@
 
 - [What's new in v1](#whats-new-in-v1)
 - [Installation](#installation)
+- [Playground](#playground)
 - [Quick start](#quick-start)
 - [API](#api)
   - [`arrayMixer(...entries, options?)`](#arraymixerentries-options)
@@ -65,6 +66,10 @@ CommonJS, ESM, and a UMD bundle are all shipped. For a `<script>` tag:
   const mixed = ArrayMixer.arrayMixer([2, photos], [1, ads]);
 </script>
 ```
+
+## Playground
+
+Try the tuple API with emoji cards in the [ArrayMixer Playground](./playground.html).
 
 ## Quick start
 

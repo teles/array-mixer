@@ -17,6 +17,8 @@
     },
     "files": [
         "release",
+        "playground.html",
+        ".readme/images/logo.png",
         "README.md",
         "LICENSE"
     ],
