@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ArrayMixer Playground</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: "class" };
+
+    try {
+      const savedTheme = localStorage.getItem("arrayMixerPlaygroundTheme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.classList.toggle(
+        "dark",
+        savedTheme ? savedTheme === "dark" : prefersDark,
+      );
+    } catch {
+      document.documentElement.classList.remove("dark");
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    [x-cloak] { display: none !important; }
+  </style>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-slate-50 text-slate-950 antialiased transition-colors dark:bg-slate-950 dark:text-slate-50">
+  <main x-data="playground()" x-cloak class="min-h-screen">
+    <header class="border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+      <div class="mx-auto flex h-[70px] max-w-[118rem] items-center justify-between px-4 sm:px-6 lg:px-8">
+        <a href="./README.md" class="flex min-w-0 items-center gap-3">
+          <img src="./.readme/images/logo.png" alt="ArrayMixer" class="h-9 w-auto shrink-0">
+          <span class="hidden text-lg font-bold tracking-normal text-slate-950 dark:text-slate-50 sm:inline">ArrayMixer</span>
+          <span class="hidden rounded border border-slate-300 px-2 py-1 text-xs font-semibold text-slate-600 dark:border-slate-700 dark:text-slate-300 md:inline">v1</span>
+        </a>
+
+        <nav class="hidden h-full items-stretch md:flex">
+          <span class="flex items-center border-b-2 border-slate-950 px-5 text-sm font-bold dark:border-slate-50">
+            Playground
+          </span>
+        </nav>
+
+        <button
+          type="button"
+          @click="toggleTheme()"
+          :aria-pressed="darkMode"
+          class="flex h-10 w-10 shrink-0 items-center justify-center rounded border border-transparent text-slate-900 hover:border-slate-300 hover:bg-slate-100 dark:text-slate-100 dark:hover:border-slate-700 dark:hover:bg-slate-900"
+        >
+          <svg x-show="!darkMode" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+          </svg>
+          <svg x-show="darkMode" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.99 12.72A8.5 8.5 0 1 1 11.28 3.01 6.5 6.5 0 0 0 20.99 12.72Z"></path>
+          </svg>
+          <span class="sr-only">Toggle dark mode</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="mx-auto grid max-w-[118rem] lg:grid-cols-[400px_minmax(0,1fr)]">
+      <aside class="border-b border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950 lg:min-h-[calc(100vh-70px)] lg:border-b-0 lg:border-r">
+        <div class="space-y-6 px-4 py-6 sm:px-6 lg:sticky lg:top-0 lg:px-8">
+          <section>
+            <h1 class="text-2xl font-bold tracking-normal text-slate-950 dark:text-slate-50">Playground</h1>
+            <p class="mt-2 max-w-sm text-sm leading-6 text-slate-600 dark:text-slate-400">
+              Tune tuple counts and see how arrays are interleaved into one feed.
+            </p>
+          </section>
+
+          <section class="border border-slate-300 bg-white p-3 dark:border-slate-700 dark:bg-slate-900">
+            <div class="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-slate-700 dark:text-slate-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-700 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 21v-7"></path><path d="M4 10V3"></path><path d="M12 21v-9"></path><path d="M12 8V3"></path><path d="M20 21v-5"></path><path d="M20 12V3"></path><path d="M2 14h4"></path><path d="M10 8h4"></path><path d="M18 16h4"></path>
+              </svg>
+              Configuration
+            </div>
+
+            <h2 class="mb-2 text-xs font-bold uppercase tracking-wide text-slate-700 dark:text-slate-300">Presets</h2>
+            <div class="grid gap-1">
+              <template x-for="preset in presets" :key="preset.id">
+                <button
+                  type="button"
+                  @click="loadPreset(preset.id)"
+                  class="flex h-10 items-center justify-between border px-3 text-left text-sm transition"
+                  :class="selectedPreset === preset.id
+                    ? 'border-blue-700 bg-blue-50 text-blue-900 dark:border-blue-500 dark:bg-blue-950/40 dark:text-blue-100'
+                    : 'border-slate-300 bg-white text-slate-900 hover:border-slate-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:hover:border-slate-500'"
+                >
+                  <span class="truncate" x-text="preset.name"></span>
+                  <span class="ml-3 text-lg leading-none">›</span>
+                </button>
+              </template>
+            </div>
+          </section>
+
+          <section class="space-y-3">
+            <h2 class="text-xs font-bold uppercase tracking-wide text-slate-700 dark:text-slate-300">Mix Entries</h2>
+            <template x-for="(entry, index) in entries" :key="entry.name">
+              <article class="border p-3" :class="entry.panelClass">
+                <div class="flex items-start justify-between gap-3">
+                  <div class="min-w-0">
+                    <p class="text-xs font-bold uppercase tracking-wide" x-text="`Source ${index + 1}`"></p>
+                    <h3 class="mt-5 truncate text-lg font-bold" x-text="entry.title"></h3>
+                  </div>
+                  <div class="flex shrink-0 items-center border border-slate-300 bg-white dark:border-slate-700 dark:bg-slate-950">
+                    <button
+                      type="button"
+                      @click="decrement(index)"
+                      class="flex h-8 w-8 items-center justify-center text-lg font-bold hover:bg-slate-100 dark:hover:bg-slate-800"
+                      :aria-label="`Decrease ${entry.title} count`"
+                    >-</button>
+                    <input
+                      type="number"
+                      min="1"
+                      x-model.number="entry.count"
+                      class="h-8 w-10 border-x border-slate-300 bg-white text-center text-sm font-bold outline-none dark:border-slate-700 dark:bg-slate-950"
+                      :aria-label="`${entry.title} count`"
+                    >
+                    <button
+                      type="button"
+                      @click="increment(index)"
+                      class="flex h-8 w-8 items-center justify-center text-lg font-bold hover:bg-slate-100 dark:hover:bg-slate-800"
+                      :aria-label="`Increase ${entry.title} count`"
+                    >+</button>
+                  </div>
+                </div>
+
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <template x-for="item in entry.items.slice(0, 4)" :key="item.id">
+                    <span class="flex h-9 w-9 items-center justify-center border bg-white text-xl dark:border-slate-700 dark:bg-slate-950" x-text="item.emoji"></span>
+                  </template>
+                </div>
+              </article>
+            </template>
+          </section>
+
+          <section class="border border-slate-300 bg-white p-3 dark:border-slate-700 dark:bg-slate-900">
+            <h2 class="mb-4 text-xs font-bold uppercase tracking-wide text-slate-700 dark:text-slate-300">Options</h2>
+            <div class="grid gap-4">
+              <label class="grid grid-cols-[1fr_auto] items-center gap-3">
+                <span>
+                  <span class="block text-sm font-semibold text-slate-900 dark:text-slate-100">Limit</span>
+                  <span class="block text-xs text-slate-500 dark:text-slate-400">Optional</span>
+                </span>
+                <input
+                  type="checkbox"
+                  x-model="limitEnabled"
+                  class="h-5 w-5 rounded border-slate-300 text-blue-700 focus:ring-blue-600"
+                  aria-label="Use limit"
+                >
+              </label>
+              <input
+                type="number"
+                min="0"
+                x-model.number="limitValue"
+                :disabled="!limitEnabled"
+                :placeholder="limitEnabled ? '0' : 'default'"
+                class="h-10 w-full border border-slate-300 bg-white px-3 text-sm outline-none ring-blue-600 focus:ring-2 disabled:bg-slate-100 disabled:text-slate-400 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:disabled:bg-slate-800 dark:disabled:text-slate-500"
+              >
+
+              <label class="grid gap-2 text-sm font-semibold text-slate-900 dark:text-slate-100">
+                Fill Strategy
+                <select
+                  x-model="options.fill"
+                  class="h-10 border border-slate-300 bg-white px-3 text-sm font-normal outline-none ring-blue-600 focus:ring-2 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                >
+                  <option value="repeat">repeat</option>
+                  <option value="skip">skip</option>
+                  <option value="stop">stop</option>
+                </select>
+              </label>
+
+              <label class="flex items-center justify-between text-sm font-semibold text-slate-900 dark:text-slate-100">
+                Shuffle result
+                <span
+                  class="relative inline-flex h-7 w-12 shrink-0 cursor-pointer items-center rounded-full border p-0.5 transition-colors"
+                  :class="options.shuffle ? 'border-blue-700 bg-blue-700 dark:border-blue-400 dark:bg-blue-500' : 'border-slate-300 bg-slate-200 dark:border-slate-700 dark:bg-slate-800'"
+                >
+                  <input
+                    type="checkbox"
+                    x-model="options.shuffle"
+                    class="absolute inset-0 cursor-pointer opacity-0"
+                    aria-label="Shuffle result"
+                  >
+                  <span
+                    class="pointer-events-none h-5 w-5 rounded-full bg-white shadow-sm ring-1 ring-slate-900/10 transition-transform"
+                    :class="options.shuffle ? 'translate-x-5' : 'translate-x-0'"
+                  ></span>
+                </span>
+              </label>
+            </div>
+          </section>
+        </div>
+      </aside>
+
+      <section class="min-w-0 space-y-6 px-4 py-6 sm:px-6 lg:px-8">
+        <section class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:shadow-none">
+          <div class="flex items-center justify-between gap-3 border-b border-slate-200 px-5 py-4 dark:border-slate-800">
+            <div>
+              <h2 class="text-2xl font-bold tracking-normal text-slate-950 dark:text-slate-50">Mixed Feed</h2>
+              <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                <span x-text="mixed.length"></span> cards generated
+                <span x-show="!limitEnabled">with the default length</span>
+                <span x-show="limitEnabled">with a custom limit</span>.
+              </p>
+            </div>
+            <button
+              type="button"
+              @click="resetPreset()"
+              class="h-10 rounded border border-slate-300 px-5 text-sm font-semibold text-slate-900 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-800"
+            >
+              Reset
+            </button>
+          </div>
+
+          <div class="grid grid-cols-[repeat(auto-fill,minmax(128px,1fr))] gap-4 p-5">
+            <template x-for="(item, index) in mixed" :key="`${item.id}-${index}`">
+              <article class="flex aspect-square min-h-[128px] flex-col items-center justify-center rounded-lg border p-3 text-center" :class="item.cardClass">
+                <div class="text-4xl" x-text="item.emoji"></div>
+                <div class="mt-3 max-w-full truncate text-xs font-bold tracking-wide" x-text="item.label"></div>
+              </article>
+            </template>
+            <template x-for="slot in emptySlots" :key="`empty-${slot}`">
+              <div class="flex aspect-square min-h-[128px] items-center justify-center rounded-lg border border-dashed border-slate-300 text-slate-300 dark:border-slate-700 dark:text-slate-700">...</div>
+            </template>
+          </div>
+        </section>
+
+        <div class="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(320px,44%)]">
+          <section class="min-w-0 overflow-hidden rounded-lg border border-slate-950 bg-slate-950 text-slate-50 shadow-sm dark:border-slate-700 dark:bg-black dark:shadow-none">
+            <div class="flex items-center gap-2 border-b border-slate-700 bg-slate-900 px-4 py-3 dark:bg-slate-950">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m16 18 6-6-6-6"></path><path d="m8 6-6 6 6 6"></path>
+              </svg>
+              <h2 class="text-xs font-bold uppercase tracking-wide text-slate-100">TypeScript Implementation</h2>
+            </div>
+            <pre class="max-w-full overflow-x-auto whitespace-pre-wrap break-words p-5 text-sm leading-7 text-slate-100"><code x-html="highlightedCode"></code></pre>
+          </section>
+
+          <section class="min-w-0 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:shadow-none">
+            <div class="border-b border-slate-200 px-4 py-3 dark:border-slate-800">
+              <h2 class="text-xs font-bold uppercase tracking-wide text-slate-900 dark:text-slate-100">Result Order</h2>
+            </div>
+            <ol class="divide-y divide-slate-200 dark:divide-slate-800">
+              <template x-for="(item, index) in mixed.slice(0, 12)" :key="`${item.id}-trace-${index}`">
+                <li class="grid min-w-0 grid-cols-[40px_32px_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 text-sm">
+                  <span class="font-mono text-slate-400 dark:text-slate-500" x-text="String(index + 1).padStart(2, '0')"></span>
+                  <span class="text-xl" x-text="item.emoji"></span>
+                  <span class="truncate font-medium text-slate-900 dark:text-slate-100" x-text="item.label"></span>
+                  <span class="rounded-sm px-2 py-1 text-xs font-semibold" :class="item.badgeClass" x-text="item.sourceLabel"></span>
+                </li>
+              </template>
+            </ol>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    function playground() {
+      const presets = [
+        {
+          id: "photo-ads",
+          name: "Photo stream with ads",
+          limitEnabled: false,
+          limitValue: 18,
+          options: { fill: "repeat", shuffle: false },
+          entries: [
+            source("photos", "Photos", "Source 1", 2, {
+              panelClass: "border-blue-200 bg-blue-50 text-blue-950 dark:border-blue-800 dark:bg-blue-950/30 dark:text-blue-100",
+              cardClass: "border-blue-200 bg-blue-50 text-blue-950 dark:border-blue-800 dark:bg-blue-950/30 dark:text-blue-100",
+              badgeClass: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100",
+            }, [
+              ["p0", "📸", "Photo 1"], ["p1", "🖼️", "Photo 2"], ["p2", "🌅", "Photo 3"],
+              ["p3", "🌌", "Photo 4"], ["p4", "🏙️", "Photo 5"], ["p5", "🏔️", "Photo 6"],
+            ]),
+            source("ads", "Ads", "Source 2", 1, {
+              panelClass: "border-amber-200 bg-amber-100 text-amber-950 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-100",
+              cardClass: "border-amber-200 bg-amber-100 text-amber-950 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-100",
+              badgeClass: "bg-amber-100 text-amber-900 dark:bg-amber-900 dark:text-amber-100",
+            }, [
+              ["a0", "💰", "Ad 1"], ["a1", "📣", "Ad 2"], ["a2", "🎟️", "Ad 3"],
+            ]),
+          ],
+        },
+        {
+          id: "article-gallery",
+          name: "Articles and gallery breaks",
+          limitEnabled: false,
+          limitValue: 16,
+          options: { fill: "skip", shuffle: false },
+          entries: [
+            source("articles", "Articles", "Source 1", 4, {
+              panelClass: "border-emerald-200 bg-emerald-50 text-emerald-950 dark:border-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-100",
+              cardClass: "border-emerald-200 bg-emerald-50 text-emerald-950 dark:border-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-100",
+              badgeClass: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-100",
+            }, [
+              ["t0", "📰", "Article 1"], ["t1", "📚", "Article 2"], ["t2", "🧾", "Article 3"],
+              ["t3", "💡", "Article 4"], ["t4", "🔎", "Article 5"], ["t5", "📌", "Article 6"],
+            ]),
+            source("images", "Images", "Source 2", 2, {
+              panelClass: "border-fuchsia-200 bg-fuchsia-50 text-fuchsia-950 dark:border-fuchsia-800 dark:bg-fuchsia-950/30 dark:text-fuchsia-100",
+              cardClass: "border-fuchsia-200 bg-fuchsia-50 text-fuchsia-950 dark:border-fuchsia-800 dark:bg-fuchsia-950/30 dark:text-fuchsia-100",
+              badgeClass: "bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-900 dark:text-fuchsia-100",
+            }, [
+              ["i0", "🖼️", "Image 1"], ["i1", "🎨", "Image 2"], ["i2", "🧩", "Image 3"],
+            ]),
+          ],
+        },
+        {
+          id: "pets",
+          name: "Three pet collections",
+          limitEnabled: false,
+          limitValue: 15,
+          options: { fill: "repeat", shuffle: false },
+          entries: [
+            source("dogs", "Dogs", "Source 1", 1, {
+              panelClass: "border-orange-200 bg-orange-50 text-orange-950 dark:border-orange-800 dark:bg-orange-950/30 dark:text-orange-100",
+              cardClass: "border-orange-200 bg-orange-50 text-orange-950 dark:border-orange-800 dark:bg-orange-950/30 dark:text-orange-100",
+              badgeClass: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-100",
+            }, [
+              ["d0", "🐶", "Pup"], ["d1", "🦴", "Bone"], ["d2", "🐕", "Dog"],
+            ]),
+            source("cats", "Cats", "Source 2", 1, {
+              panelClass: "border-violet-200 bg-violet-50 text-violet-950 dark:border-violet-800 dark:bg-violet-950/30 dark:text-violet-100",
+              cardClass: "border-violet-200 bg-violet-50 text-violet-950 dark:border-violet-800 dark:bg-violet-950/30 dark:text-violet-100",
+              badgeClass: "bg-violet-100 text-violet-800 dark:bg-violet-900 dark:text-violet-100",
+            }, [
+              ["c0", "🐱", "Cat"], ["c1", "🧶", "Yarn"], ["c2", "🐈", "Kitten"],
+            ]),
+            source("birds", "Birds", "Source 3", 1, {
+              panelClass: "border-cyan-200 bg-cyan-50 text-cyan-950 dark:border-cyan-800 dark:bg-cyan-950/30 dark:text-cyan-100",
+              cardClass: "border-cyan-200 bg-cyan-50 text-cyan-950 dark:border-cyan-800 dark:bg-cyan-950/30 dark:text-cyan-100",
+              badgeClass: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-100",
+            }, [
+              ["b0", "🦜", "Parrot"], ["b1", "🪶", "Feather"], ["b2", "🐦", "Bird"],
+            ]),
+          ],
+        },
+      ];
+
+      function source(name, title, sourceLabel, count, styles, rows) {
+        return {
+          name,
+          title,
+          sourceLabel,
+          count,
+          ...styles,
+          items: rows.map(([id, emoji, label]) => ({
+            id,
+            emoji,
+            label,
+            type: name,
+            sourceLabel,
+            cardClass: styles.cardClass,
+            badgeClass: styles.badgeClass,
+          })),
+        };
+      }
+
+      function clone(value) {
+        return JSON.parse(JSON.stringify(value));
+      }
+
+      return {
+        presets,
+        selectedPreset: presets[0].id,
+        entries: clone(presets[0].entries),
+        options: clone(presets[0].options),
+        limitEnabled: presets[0].limitEnabled,
+        limitValue: presets[0].limitValue,
+        darkMode: document.documentElement.classList.contains("dark"),
+
+        toggleTheme() {
+          this.darkMode = !this.darkMode;
+          document.documentElement.classList.toggle("dark", this.darkMode);
+
+          try {
+            localStorage.setItem(
+              "arrayMixerPlaygroundTheme",
+              this.darkMode ? "dark" : "light",
+            );
+          } catch {
+            // Theme persistence is optional when storage is unavailable.
+          }
+        },
+
+        get totalItems() {
+          return this.entries.reduce((sum, entry) => sum + entry.items.length, 0);
+        },
+
+        get targetLength() {
+          return this.limitEnabled ? this.safeLimit() : this.totalItems;
+        },
+
+        get mixed() {
+          return this.mix(this.entries, this.options);
+        },
+
+        get emptySlots() {
+          return Math.max(0, Math.min(3, 12 - this.mixed.length));
+        },
+
+        get codeSample() {
+          const arrays = this.entries
+            .map((entry) => `const ${entry.name} = [${entry.items.map((item) => `"${item.emoji}"`).join(", ")}];`)
+            .join("\n");
+          const entries = this.entries
+            .map((entry) => `[${this.positiveCount(entry.count)}, ${entry.name}]`)
+            .join(",\n  ");
+          const optionPairs = [];
+          if (this.limitEnabled) optionPairs.push(`limit: ${this.safeLimit()}`);
+          if (this.options.fill !== "repeat") optionPairs.push(`fill: "${this.options.fill}"`);
+          if (this.options.shuffle) optionPairs.push("shuffle: true");
+          const options = optionPairs.length > 0
+            ? `,\n  { ${optionPairs.join(", ")} }`
+            : "";
+
+          return `${arrays}\n\nconst mixed = arrayMixer(\n  ${entries}${options}\n);`;
+        },
+
+        get highlightedCode() {
+          return this.escapeHtml(this.codeSample)
+            .replace(/arrayMixer/g, '<span class="text-yellow-300">arrayMixer</span>')
+            .replace(/limit/g, '<span class="text-orange-300">limit</span>')
+            .replace(/fill/g, '<span class="text-emerald-300">fill</span>')
+            .replace(/shuffle/g, '<span class="text-blue-300">shuffle</span>');
+        },
+
+        escapeHtml(value) {
+          return value
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;");
+        },
+
+        loadPreset(id) {
+          const preset = this.presets.find((item) => item.id === id) || this.presets[0];
+          this.selectedPreset = preset.id;
+          this.entries = clone(preset.entries);
+          this.options = clone(preset.options);
+          this.limitEnabled = preset.limitEnabled;
+          this.limitValue = preset.limitValue;
+        },
+
+        resetPreset() {
+          this.loadPreset(this.selectedPreset);
+        },
+
+        increment(index) {
+          this.entries[index].count = this.positiveCount(this.entries[index].count) + 1;
+        },
+
+        decrement(index) {
+          this.entries[index].count = Math.max(1, this.positiveCount(this.entries[index].count) - 1);
+        },
+
+        positiveCount(value) {
+          const count = Number(value);
+          return Number.isInteger(count) && count > 0 ? count : 1;
+        },
+
+        safeLimit() {
+          const limit = Number(this.limitValue);
+          return Number.isInteger(limit) && limit >= 0 ? limit : this.totalItems;
+        },
+
+        shuffle(items) {
+          const copy = [...items];
+          for (let i = copy.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+          }
+          return copy;
+        },
+
+        mix(entries, options) {
+          const fill = ["repeat", "skip", "stop"].includes(options.fill) ? options.fill : "repeat";
+          const target = this.targetLength;
+          const result = [];
+          const states = entries.map((entry) => ({
+            count: this.positiveCount(entry.count),
+            items: options.shuffle ? this.shuffle(entry.items) : [...entry.items],
+            consumed: 0,
+            skipped: false,
+          }));
+
+          while (result.length < target) {
+            let progressed = false;
+
+            for (const state of states) {
+              if (result.length >= target) break;
+              if (state.skipped || state.items.length === 0) {
+                state.skipped = true;
+                continue;
+              }
+
+              for (let i = 0; i < state.count && result.length < target; i++) {
+                const used = state.consumed;
+                if (used >= state.items.length) {
+                  if (fill === "repeat") {
+                    result.push(state.items[used % state.items.length]);
+                    state.consumed += 1;
+                    progressed = true;
+                  } else if (fill === "skip") {
+                    state.skipped = true;
+                    break;
+                  } else {
+                    return result;
+                  }
+                } else {
+                  result.push(state.items[used]);
+                  state.consumed += 1;
+                  progressed = true;
+                }
+              }
+            }
+
+            if (!progressed) break;
+          }
+
+          return result;
+        },
+      };
+    }
+  </script>
+</body>
+</html>

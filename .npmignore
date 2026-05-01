@@ -1,3 +1,11 @@
 /src/
+/.readme/
 /coverage/
 /.nyc_output/
+/node_modules/
+.babelrc
+tsconfig.json
+vite.config.ts
+.eslintrc.yml
+.travis.yml
+_config.yml

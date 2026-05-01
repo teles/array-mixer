@@ -3,60 +3,91 @@
    <img src="./.readme/images/logo.png" alt="Logo ArrayMixer" title="Logo ArrayMixer by  cliparteles ( https://openclipart.org/user-detail/cliparteles )" />
   <br>
 </h1>
-<p align="center">  
-<a href="https://www.codacy.com/app/josetelesmaciel/array-mixer?utm_source=github.com&utm_medium=referral&utm_content=teles/array-mixer&utm_campaign=badger"><img src="https://api.codacy.com/project/badge/Grade/2cbd62dd3c284ce79f6e2c35817bec12"></a>
-<a href="https://www.codacy.com/app/josetelesmaciel/array-mixer?utm_source=github.com&utm_medium=referral&utm_content=teles/array-mixer&utm_campaign=Badge_Coverage"><img src="https://api.codacy.com/project/badge/Coverage/8a941e0f57c047c8a481f4854666b42d"></a>
-<a href="https://travis-ci.org/teles/array-mixer"><img src="https://travis-ci.org/teles/array-mixer.svg?branch=master"></a>
+<p align="center">
 <a href="https://www.npmjs.com/package/array-mixer"><img src="https://img.shields.io/npm/v/array-mixer.svg"></a>
-<a href="https://gitter.im/array-mixer/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/array-mixer/Lobby.svg"></a>
- <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
+<a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/types-TypeScript-3178c6.svg"></a>
 </p>
 
 <p align="center">
-  This repository contains the <strong>ArrayMixer</strong> source code.
-  ArrayMixer is a tiny javascript lib with <strong>less than 1kb</strong> made to help ordering groups of arrays in a very personalized manner.
-Powerful and easy to use.
+  <strong>ArrayMixer</strong> is a tiny TypeScript-friendly utility (&lt; 1&nbsp;kB gzipped) for interleaving any number of arrays in a fully customizable order.<br>
+  Powerful, dependency-free, and easy to use.
 </p>
 
 ## Table of contents
 
-  * [Common usage](#common-usage)
-  * [Installation](#installation)
-     * [Node projects](#node-projects)
-     * [Web projects](#web-projects)
-  * [Parameters](#parameters)
-     * [Aliases](#aliases)
-     * [Sequence](#sequence)
-  * [Examples](#examples)
-     * [Example 1) For every 7 photos display an ad:](#example-1-for-every-7-photos-display-an-ad)
-     * [Example 2) For every 4 paragraphs of text include 2 images:](#example-2-for-every-4-paragraphs-of-text-include-2-images)
-     * [Example 3) In a group of 8 related links reserve positions 5 and 6 for sponsored links:](#example-3-in-a-group-of-8-related-links-reserve-positions-5-and-6-for-sponsored-links)
-     * [Example 4) Display a list of songs including the most successful songs for every 10 songs:](#example-4-display-a-list-of-songs-including-the-most-successful-songs-for-every-10-songs)
-     * [Example 5) You can also use larger aliases and the ES6 object shorthand:](#example-5-you-can-also-use-larger-aliases-and-the-es6-object-shorthand)
-     * [Example 6) View photos of puppies, kittens and penguins in sequence:](#example-6-view-photos-of-puppies-kittens-and-penguins-in-sequence)
-     * [Example 7) Include 1 large photo for every 2 medium size photos followed by 3 small photos:](#example-7-include-1-large-photo-for-every-2-medium-size-photos-followed-by-3-small-photos)
-     * [More examples](#more-examples)
-  * [Contributing](#contributing)
-  * [License](#license)
-  * [Special thanks](#special-thanks)
+- [What's new in v1](#whats-new-in-v1)
+- [Installation](#installation)
+- [Playground](#playground)
+- [Quick start](#quick-start)
+- [API](#api)
+  - [`arrayMixer(...entries, options?)`](#arraymixerentries-options)
+  - [`MixEntry<T>`](#mixentryt)
+  - [`MixerOptions`](#mixeroptions)
+- [Examples](#examples)
+- [TypeScript support](#typescript-support)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Common usage
+## What's new in v1
 
-Let's think we have two arrays:  **photos** and **ads**.
+The previous `ArrayMixer(aliases, sequence)` API based on a string mini-DSL (`["2C", "4M"]`) was replaced by a clean, type-safe tuple-based API:
 
-```javascript
+```ts
+// before (v0.x)
+ArrayMixer({ P: photos, A: ads }, ["2P", "1A"]);
+
+// after (v1.x)
+arrayMixer([2, photos], [1, ads]);
+```
+
+Why the change:
+
+- **No mini-DSL** — sequences are plain data, no string parsing.
+- **No aliases** — the source array is right there in the entry.
+- **Generic types** — the result type is inferred from the inputs.
+- **Options object** — opt into `limit`, `shuffle`, and `fill` strategies.
+
+## Installation
+
+```bash
+pnpm add array-mixer
+```
+
+```ts
+import { arrayMixer } from "array-mixer";
+```
+
+CommonJS, ESM, and a UMD bundle are all shipped. For a `<script>` tag:
+
+```html
+<script src="https://unpkg.com/array-mixer/release/array-mixer.umd.js"></script>
+<script>
+  const mixed = ArrayMixer.arrayMixer([2, photos], [1, ads]);
+</script>
+```
+
+## Playground
+
+Try the tuple API with emoji cards in the [ArrayMixer Playground](./playground.html).
+
+## Quick start
+
+Given two arrays, `photos` (12 items) and `ads` (6 items):
+
+```ts
 photos.length === 12; // true
-ads.length === 6; // true
+ads.length === 6;     // true
 ```
 
-Use `ArrayMixer` to create a new array containing **2 photos** followed by **1 ad** until the end of both arrays.
+Interleave **2 photos** followed by **1 ad** until both arrays are consumed:
 
-
-```javascript
-let mixedArray = ArrayMixer({P:photos, A:ads}, ["2P", "1A"]);
+```ts
+const mixed = arrayMixer([2, photos], [1, ads]);
 ```
 
-So `mixedArray` will contain:
+`mixed` will contain:
+
 <div>
   <img src="./.readme/images/p0.svg" align="left">
   <img src="./.readme/images/p1.svg" align="left">
@@ -78,113 +109,96 @@ So `mixedArray` will contain:
   <img src="./.readme/images/a5.svg" align="auto">
 </div>
 
-<h2 id="installation">Installation</h2>
+## API
 
-`ArrayMixer` can be used in node projects and web projects.
+### `arrayMixer(...entries, options?)`
 
-### Node projects
+Reorder one or more arrays into a single array by interleaving chunks of each.
 
-Requires node version **5.7 or later**.
-
-```bash
-npm install array-mixer --save
+```ts
+function arrayMixer<T>(...entries: MixEntry<T>[]): T[];
+function arrayMixer<T>(
+  ...args: [...MixEntry<T>[], MixerOptions]
+): T[];
 ```
 
-Import it to your code using:
+The optional `options` object is detected automatically as the **last** argument when it is not a `MixEntry` tuple.
 
-```javascript
-const ArrayMixer = require("array-mixer");
+### `MixEntry<T>`
+
+```ts
+type MixEntry<T> = readonly [count: number, items: readonly T[]];
 ```
 
-### Web projects
+A tuple with two fields:
 
-[Download latest ES5 transpiled version from unpkg.com](https://unpkg.com/array-mixer@0.7.2/release/array-mixer.js).
+- `count` — how many items of this group to emit per round. Must be a positive integer.
+- `items` — the source array.
 
-Import *ES5* transpiled version to your code.
+### `MixerOptions`
 
-```html
-<script src="https://unpkg.com/array-mixer@0.7.2/release/array-mixer.js"></script>
+```ts
+interface MixerOptions {
+  limit?: number;
+  shuffle?: boolean;
+  fill?: "repeat" | "skip" | "stop";
+}
 ```
 
-## Parameters
+| Option    | Default     | Description |
+|-----------|-------------|-------------|
+| `limit`   | sum of input lengths | Forces a fixed result length. Useful for infinite feeds. |
+| `shuffle` | `false`     | Shuffles each input array (Fisher–Yates) before mixing. Inputs are not mutated. |
+| `fill`    | `"repeat"`  | What to do when an entry's source runs out: `"repeat"` cycles from the start, `"skip"` removes that group from further rounds, `"stop"` ends the result. |
 
-<img src="./.readme/images/aliases.svg" align="left">
-<img src="./.readme/images/sequence.svg">
+Invalid runtime input throws clear errors:
 
-`ArrayMixer` has only two mandatory parameters.
-
-```javascript
-let aliases = {M:myArray, O:otherArray};
-let sequence = ["3M", "5O"];
-
-let mixed = ArrayMixer(aliases, sequence);
-```
-
-
-### Aliases
-
-This parameter **should be** an object with keys used as alias for sequence and key values pointing to avaliable arrays.
-
-
-### Sequence
-
-This parameters uses the aliases defined on **aliases** parameter to create a sequence order to display the arrays.
+- `count` must be a positive integer.
+- `limit`, when provided, must be a non-negative integer.
+- `fill`, when provided, must be `"repeat"`, `"skip"`, or `"stop"`.
 
 ## Examples
 
-`ArrayMixer` can be used combining different arrays, aliases and sequences.
-The following examples shows some ways to use it.
+### 1) For every 7 photos display an ad
 
-### Example 1) For every 7 photos display an ad:
-
-```javascript
-ArrayMixer({F: Photos, A: Ads}, ["7P", "1A"]);
-```
-**or** (as number 1 on sequence can be ommited):
-
-```javascript
-ArrayMixer({F: Photos, A: Ads}, ["7P", "A"]);
+```ts
+arrayMixer([7, photos], [1, ads]);
 ```
 
-### Example 2) For every 4 paragraphs of text include 2 images:
-```javascript
-ArrayMixer({P: paragraphs, I: images}, ["4P", "2I"]);
+### 2) For every 4 paragraphs include 2 images
+
+```ts
+arrayMixer([4, paragraphs], [2, images]);
 ```
 
-### Example 3) In a group of 8 related links reserve positions 5 and 6 for sponsored links:
-```javascript
-ArrayMixer({R: related, S: sponsored}, ["4R", "2S", "2R"]);
+### 3) In a group of 8 related links, reserve positions 5–6 for sponsored
+
+```ts
+arrayMixer([4, related], [2, sponsored], [2, related]);
 ```
 
-### Example 4) Display a list of songs including the most successful songs for every 10 songs:
-```javascript
-ArrayMixer({M: musics, H: hits}, ["10M", "2H"]);
+### 4) Display a list of songs with hits sprinkled in
+
+```ts
+arrayMixer([10, songs], [2, hits]);
 ```
 
-### Example 5) You can also use larger aliases and the ES6 object shorthand:
-```javascript
-ArrayMixer({days, weekend}, ["5days", "2weekend"]);
+### 5) Cycle puppies, kittens, and penguins in sequence
+
+```ts
+const mixed = arrayMixer([1, puppies], [1, kittens], [1, penguins]);
 ```
 
-You can manipulate more than two vectors at a time, as in the following example:
- 
-### Example 6) View photos of puppies, kittens and penguins in sequence:
-
-```javascript
-let mixed = ArrayMixer({puppies, kittens, penguins}, ["puppies", "kittens", "penguins"));
-```
-
-| `puppies`               | `kittens`               | `penguins`                          | `mixed` |
-|-----------------------|-----------------------|-----------------------------------|------------------------------------------------------------------------------|
+| `puppies`     | `kittens`     | `penguins`    | `mixed`                                  |
+|---------------|---------------|---------------|------------------------------------------|
 | [🐶, 🐶, 🐶] | [🐱, 🐱, 🐱] | [🐧, 🐧, 🐧] | [🐶, 🐱, 🐧, 🐶, 🐱, 🐧, 🐶, 🐱, 🐧] |
 
-### Example 7) Include 1 large photo for every 2 medium size photos followed by 3 small photos:
+### 6) 1 large photo for every 2 medium followed by 3 small
 
-**Tip:** `ArrayMixer` lets you mix three or more arrays at once.
-
-```javascript 
-ArrayMixer({L:large, M:medium, S:small}, ["2M", "3S", "L"]);
+```ts
+arrayMixer([2, medium], [3, small], [1, large]);
 ```
+
 <div>
   <img src="./.readme/images/m0.svg" align="left">
   <img src="./.readme/images/m1.svg" align="left">
@@ -199,29 +213,73 @@ ArrayMixer({L:large, M:medium, S:small}, ["2M", "3S", "L"]);
   <img src="./.readme/images/s5.svg" align="left">
   <img src="./.readme/images/l1.svg" align="left">
   <img src="./.readme/images/m4.svg" align="left">
-  <img src="./.readme/images/m4.svg" align="left">
   <img src="./.readme/images/s6.svg" align="left">
   <img src="./.readme/images/s7.svg" align="left">
   <img src="./.readme/images/s8.svg" align="left">
-  <img src="./.readme/images/l2.svg">
+  <img src="./.readme/images/l2.svg" align="auto">
 </div>
 
-> **Disclaimer**: All arrays mentioned in this section must exist for the examples to work.
+### 7) Cap an infinite feed with `limit`
 
-### More examples
+```ts
+arrayMixer([3, articles], [1, ads], { limit: 20 });
+```
 
-For more example please check the [specification file](src/spec.js).
+The result is exactly 20 items long; arrays cycle as needed (`fill: "repeat"` is the default).
+
+### 8) Stop when any source runs out
+
+```ts
+arrayMixer(
+  [2, [1, 2, 3, 4]],
+  [1, [9]],
+  { fill: "stop", limit: 100 },
+);
+// => [1, 2, 9, 3, 4]
+```
+
+### 9) Drop exhausted groups, keep the rest going
+
+```ts
+arrayMixer(
+  [1, ["a", "b"]],
+  [1, ["x", "y", "z", "w"]],
+  { fill: "skip" },
+);
+// => ["a", "x", "b", "y", "z", "w"]
+```
+
+### 10) Shuffle each source before mixing
+
+```ts
+arrayMixer([2, ads], [5, articles], { shuffle: true });
+```
+
+## TypeScript support
+
+The result type is inferred from the inputs:
+
+```ts
+const mixed = arrayMixer([2, ["red", "blue"]], [1, ["cat", "dog"]]);
+// mixed: string[]
+
+interface Photo { url: string }
+const photos: Photo[] = [/* ... */];
+const ads: Photo[] = [/* ... */];
+
+const feed = arrayMixer([2, photos], [1, ads]);
+// feed: Photo[]
+```
 
 ## Contributing
 
-You may contribute in several ways like creating new features, fixing bugs, improving documentation and examples
-or translating any document here to your language. [Find more information in CONTRIBUTING.md](CONTRIBUTING.md).
+You may contribute in many ways: new features, bug fixes, documentation improvements, or translations. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-[MIT](LICENSE) - Jota Teles - 2017
+[MIT](LICENSE) — Jota Teles
 
 ## Special thanks
 
-* [Willian Ribeiro](https://github.com/willianribeiro);
-* [João Paulo](https://github.com/jpusp);
+- [Willian Ribeiro](https://github.com/willianribeiro)
+- [João Paulo](https://github.com/jpusp)
