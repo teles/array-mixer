@@ -17,6 +17,7 @@
 ## Table of contents
 
 - [What's new in v1](#whats-new-in-v1)
+- [Documentation](#documentation)
 - [Installation](#installation)
 - [Playground](#playground)
 - [Quick start](#quick-start)
@@ -48,6 +49,10 @@ Why the change:
 - **Generic types** — the result type is inferred from the inputs.
 - **Options object** — opt into `limit`, `shuffle`, and `fill` strategies.
 
+## Documentation
+
+Open the official docs page at [ArrayMixer Docs](./docs/) for package manager commands, ESM, CommonJS, browser UMD, and TypeScript notes.
+
 ## Installation
 
 ```bash
@@ -69,7 +74,7 @@ CommonJS, ESM, and a UMD bundle are all shipped. For a `<script>` tag:
 
 ## Playground
 
-Try the tuple API with emoji cards in the [ArrayMixer Playground](./playground.html).
+Try the tuple API in the [ArrayMixer Playground](./playground/).
 
 ## Quick start
 

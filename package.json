@@ -17,8 +17,11 @@
     },
     "files": [
         "release",
-        "playground.html",
+        "docs",
+        "playground",
+        "site-assets",
         ".readme/images/logo.png",
+        "CHANGELOG.md",
         "README.md",
         "LICENSE"
     ],
