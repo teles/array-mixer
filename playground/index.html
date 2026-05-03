@@ -1,0 +1,908 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>ArrayMixer Playground</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+            display: ["Space Grotesk", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+            mono: ["JetBrains Mono", "SFMono-Regular", "Consolas", "monospace"],
+          },
+          boxShadow: {
+            block: "0 3px 0 rgba(15, 23, 42, 0.14)",
+            blockStrong: "0 5px 0 rgba(15, 23, 42, 0.18)",
+          },
+        },
+      },
+    };
+
+    try {
+      const savedTheme = localStorage.getItem("arrayMixerSiteTheme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.classList.toggle(
+        "dark",
+        savedTheme ? savedTheme === "dark" : prefersDark,
+      );
+    } catch {
+      document.documentElement.classList.remove("dark");
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../site-assets/site.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-slate-50 font-sans text-slate-950 antialiased transition-colors dark:bg-slate-950 dark:text-slate-50">
+  <main id="app" v-cloak class="min-h-screen">
+    <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl transition-colors dark:border-slate-800 dark:bg-slate-950/90">
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+        <a href="../docs/" class="flex min-w-0 items-center gap-3" aria-label="ArrayMixer docs">
+          <img src="../.readme/images/logo.png" alt="ArrayMixer" class="h-10 w-auto shrink-0">
+          <span class="min-w-0">
+            <span class="block truncate font-display text-xl font-bold text-slate-950 dark:text-slate-50">ArrayMixer</span>
+            <span class="hidden truncate text-xs font-semibold text-slate-500 dark:text-slate-400 sm:block">tuple-based array interleaving</span>
+          </span>
+        </a>
+
+        <nav class="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
+          <a href="../docs/" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-white">Docs</a>
+          <a href="../playground/" class="rounded-lg bg-slate-100 px-3 py-2 text-sm font-bold text-slate-950 dark:bg-slate-900 dark:text-white">Playground</a>
+          <a href="https://www.npmjs.com/package/array-mixer" class="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-white">
+            <span class="inline-flex h-5 w-5 items-center justify-center rounded bg-slate-950 font-mono text-[9px] font-black leading-none text-white dark:bg-white dark:text-slate-950" aria-hidden="true">npm</span>
+            <span>npm</span>
+          </a>
+          <a href="https://github.com/teles/array-mixer" class="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.866-.014-1.7-2.782.605-3.369-1.342-3.369-1.342-.454-1.157-1.11-1.465-1.11-1.465-.908-.621.069-.608.069-.608 1.004.071 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.091-.647.35-1.088.636-1.338-2.221-.253-4.555-1.113-4.555-4.951 0-1.094.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.563 9.563 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.748-1.026 2.748-1.026.546 1.378.203 2.397.1 2.65.64.7 1.029 1.594 1.029 2.688 0 3.848-2.337 4.695-4.566 4.943.359.31.678.923.678 1.86 0 1.342-.012 2.424-.012 2.754 0 .267.18.578.688.48C19.138 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2Z" clip-rule="evenodd"></path>
+            </svg>
+            <span>GitHub</span>
+          </a>
+        </nav>
+
+        <div class="flex shrink-0 items-center gap-2">
+          <span class="hidden rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-950/70 dark:text-emerald-200 sm:inline-flex" v-show="toast">{{ toast }}</span>
+          <button
+            type="button"
+            @click="toggleTheme"
+            :aria-pressed="darkMode"
+            class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-900 shadow-block transition hover:-translate-y-0.5 hover:shadow-blockStrong dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:shadow-none"
+          >
+            <svg v-if="!darkMode" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+            </svg>
+            <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.99 12.72A8.5 8.5 0 1 1 11.28 3.01 6.5 6.5 0 0 0 20.99 12.72Z"></path>
+            </svg>
+            <span class="sr-only">Toggle dark mode</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <section class="rounded-xl border border-slate-200 bg-white/90 p-5 shadow-blockStrong backdrop-blur transition-colors dark:border-slate-800 dark:bg-slate-900/90 dark:shadow-none sm:p-6">
+        <p class="mb-3 inline-flex rounded-md border border-sky-200 bg-sky-50 px-2.5 py-1 text-xs font-extrabold uppercase text-sky-700 dark:border-sky-800 dark:bg-sky-950/70 dark:text-sky-200">Interactive playground</p>
+        <h1 class="font-display text-3xl font-bold text-slate-950 dark:text-slate-50 sm:text-4xl">Build tuple-based interleaving patterns visually.</h1>
+        <p class="mt-3 max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300">
+          Tune source counts, try every MixerOptions field, inspect the result array, and copy the TypeScript call when the pattern feels right.
+        </p>
+        <div class="mt-5 grid gap-3 sm:grid-cols-3">
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-slate-700 dark:bg-slate-950/60">
+            <span class="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">API</span>
+            <span class="mt-1 block font-mono text-sm font-bold text-slate-950 dark:text-slate-100">[count, items]</span>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-slate-700 dark:bg-slate-950/60">
+            <span class="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Default length</span>
+            <span class="mt-1 block font-mono text-sm font-bold text-slate-950 dark:text-slate-100">sum(items)</span>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-slate-700 dark:bg-slate-950/60">
+            <span class="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Options</span>
+            <span class="mt-1 block font-mono text-sm font-bold text-slate-950 dark:text-slate-100">limit fill shuffle</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="presets" class="mt-6 rounded-xl border border-slate-200 bg-white/90 p-4 shadow-block backdrop-blur transition-colors dark:border-slate-800 dark:bg-slate-900/90 dark:shadow-none">
+        <div class="mb-3 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 class="font-display text-xl font-bold text-slate-950 dark:text-slate-50">Presets</h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Load a realistic pattern, then tweak the tuples and options.</p>
+          </div>
+          <span class="rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-950/70 dark:text-emerald-200" v-show="toast">{{ toast }}</span>
+        </div>
+        <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          <button
+            v-for="preset in presets"
+            :key="preset.id"
+            type="button"
+            @click="loadPreset(preset.id)"
+            class="min-h-28 rounded-lg border p-3 text-left shadow-block transition hover:-translate-y-0.5 hover:shadow-blockStrong dark:shadow-none"
+            :class="selectedPreset === preset.id
+              ? 'border-sky-300 bg-sky-50 text-sky-950 dark:border-sky-700 dark:bg-sky-950/50 dark:text-sky-100'
+              : 'border-slate-200 bg-slate-50 text-slate-900 hover:bg-white dark:border-slate-700 dark:bg-slate-950/60 dark:text-slate-100 dark:hover:bg-slate-900'"
+          >
+            <span class="block font-display text-sm font-bold">{{ preset.name }}</span>
+            <span class="mt-1 block text-xs font-semibold leading-5 opacity-75">{{ preset.summary }}</span>
+          </button>
+        </div>
+      </section>
+
+      <section id="playground" class="mt-6 grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
+        <aside class="space-y-5 xl:sticky xl:top-24 xl:self-start">
+          <section class="rounded-xl border border-slate-200 bg-white/95 p-4 shadow-block transition-colors dark:border-slate-800 dark:bg-slate-900/95 dark:shadow-none">
+            <div class="mb-4 flex items-start justify-between gap-3">
+              <div>
+                <h2 class="font-display text-xl font-bold text-slate-950 dark:text-slate-50">MixerOptions</h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Every option exposed by the library.</p>
+              </div>
+              <button
+                type="button"
+                @click="resetPreset"
+                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700 shadow-block transition hover:-translate-y-0.5 hover:shadow-blockStrong dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:shadow-none"
+                title="Reset preset"
+                aria-label="Reset preset"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                  <path d="M3 3v5h5"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="space-y-5">
+              <div>
+                <label class="mb-2 flex items-center justify-between gap-3">
+                  <span>
+                    <span class="block text-sm font-extrabold text-slate-800 dark:text-slate-100">limit</span>
+                    <span class="block text-xs font-medium text-slate-500 dark:text-slate-400">Override the default result length.</span>
+                  </span>
+                  <input
+                    type="checkbox"
+                    v-model="limitEnabled"
+                    class="h-5 w-5 rounded border-slate-300 text-sky-600 focus:ring-sky-500 dark:border-slate-700 dark:bg-slate-950"
+                    aria-label="Enable limit"
+                  >
+                </label>
+                <input
+                  type="number"
+                  min="0"
+                  step="1"
+                  v-model.number="limitValue"
+                  :disabled="!limitEnabled"
+                  class="h-11 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 font-mono text-sm font-bold text-slate-950 outline-none ring-sky-500 transition focus:ring-2 disabled:bg-slate-100 disabled:text-slate-400 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:disabled:bg-slate-800 dark:disabled:text-slate-500"
+                >
+              </div>
+
+              <label class="block">
+                <span class="mb-2 block text-sm font-extrabold text-slate-800 dark:text-slate-100">fill</span>
+                <select
+                  v-model="options.fill"
+                  class="h-11 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm font-bold text-slate-950 outline-none ring-sky-500 transition focus:ring-2 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                >
+                  <option value="repeat">repeat</option>
+                  <option value="skip">skip</option>
+                  <option value="stop">stop</option>
+                </select>
+                <span class="mt-2 block rounded-lg bg-sky-50 p-3 text-xs font-semibold leading-5 text-sky-800 dark:bg-sky-950/60 dark:text-sky-200">{{ fillCopy[options.fill] }}</span>
+              </label>
+
+              <div class="rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-slate-700 dark:bg-slate-950/60">
+                <button
+                  type="button"
+                  @click="options.shuffle = !options.shuffle"
+                  :aria-pressed="options.shuffle"
+                  class="flex w-full items-center justify-between gap-3 text-left"
+                >
+                  <span>
+                    <span class="block text-sm font-extrabold text-slate-800 dark:text-slate-100">shuffle</span>
+                    <span class="block text-xs font-medium text-slate-500 dark:text-slate-400">Shuffle each input array before mixing.</span>
+                  </span>
+                  <span
+                    class="relative inline-flex h-7 w-12 shrink-0 items-center rounded-full border p-0.5 transition-colors"
+                    :class="options.shuffle ? 'border-emerald-500 bg-emerald-500' : 'border-slate-300 bg-slate-200 dark:border-slate-700 dark:bg-slate-800'"
+                  >
+                    <span
+                      class="h-5 w-5 rounded-full bg-white shadow-sm transition-transform"
+                      :class="options.shuffle ? 'translate-x-5' : 'translate-x-0'"
+                    ></span>
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  @click="rerun"
+                  class="mt-3 inline-flex h-9 w-full items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-sm font-bold text-slate-700 shadow-block transition hover:-translate-y-0.5 hover:shadow-blockStrong dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:shadow-none"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12a9 9 0 1 1-2.64-6.36"></path>
+                    <path d="M21 3v7h-7"></path>
+                  </svg>
+                  <span>Re-run</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="rounded-xl border border-slate-200 bg-white/95 p-4 shadow-block transition-colors dark:border-slate-800 dark:bg-slate-900/95 dark:shadow-none">
+            <h2 class="font-display text-xl font-bold text-slate-950 dark:text-slate-50">Pattern</h2>
+            <p class="mt-3 rounded-lg bg-amber-50 p-3 font-mono text-sm font-bold leading-6 text-amber-950 dark:bg-amber-950/50 dark:text-amber-100">{{ patternSummary }}</p>
+            <dl class="mt-4 grid grid-cols-2 gap-2 text-sm">
+              <div class="rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-slate-700 dark:bg-slate-950/60">
+                <dt class="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Sources</dt>
+                <dd class="mt-1 font-mono font-bold text-slate-950 dark:text-slate-100">{{ parsedEntries.length }}</dd>
+              </div>
+              <div class="rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-slate-700 dark:bg-slate-950/60">
+                <dt class="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Target</dt>
+                <dd class="mt-1 font-mono font-bold text-slate-950 dark:text-slate-100">{{ targetLength }}</dd>
+              </div>
+              <div class="rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-slate-700 dark:bg-slate-950/60">
+                <dt class="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Fill</dt>
+                <dd class="mt-1 font-mono font-bold text-slate-950 dark:text-slate-100">{{ options.fill }}</dd>
+              </div>
+              <div class="rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-slate-700 dark:bg-slate-950/60">
+                <dt class="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Shuffle</dt>
+                <dd class="mt-1 font-mono font-bold text-slate-950 dark:text-slate-100">{{ options.shuffle ? "true" : "false" }}</dd>
+              </div>
+            </dl>
+          </section>
+        </aside>
+
+        <section class="min-w-0 space-y-6">
+          <section>
+            <div class="mb-3 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h2 class="font-display text-2xl font-bold text-slate-950 dark:text-slate-50">Sources</h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Each row becomes a tuple argument passed to <code class="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-xs dark:bg-slate-800">arrayMixer</code>.</p>
+              </div>
+              <button
+                type="button"
+                @click="addSource"
+                class="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-slate-950 px-3 text-sm font-extrabold text-white shadow-block transition hover:-translate-y-0.5 hover:shadow-blockStrong dark:bg-slate-100 dark:text-slate-950 dark:shadow-none"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5v14"></path>
+                </svg>
+                <span>Add source</span>
+              </button>
+            </div>
+
+            <div class="grid gap-4 lg:grid-cols-2">
+              <article v-for="(entry, index) in entries" :key="entry.id" class="rounded-xl border border-slate-200 bg-white/95 p-4 shadow-block transition-colors dark:border-slate-800 dark:bg-slate-900/95 dark:shadow-none">
+                <div class="mb-4 flex items-start justify-between gap-3">
+                  <div class="flex min-w-0 items-center gap-3">
+                    <span class="h-10 w-10 shrink-0 rounded-lg shadow-block dark:shadow-none" :class="palette(index).dot"></span>
+                    <div class="min-w-0">
+                      <h3 class="truncate font-display text-lg font-bold text-slate-950 dark:text-slate-50">Source {{ index + 1 }}</h3>
+                      <p class="truncate text-xs font-semibold text-slate-500 dark:text-slate-400">{{ entry.groupId ? "shared source array" : "[count, items]" }}</p>
+                    </div>
+                  </div>
+                  <div class="flex shrink-0 gap-1">
+                    <button
+                      type="button"
+                      @click="moveSource(index, -1)"
+                      :disabled="index === 0"
+                      class="flex h-8 w-8 items-center justify-center rounded-md border border-slate-200 bg-white text-sm font-black text-slate-700 shadow-block transition hover:-translate-y-0.5 hover:shadow-blockStrong disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:shadow-none"
+                      title="Move up"
+                      aria-label="Move source up"
+                    >↑</button>
+                    <button
+                      type="button"
+                      @click="moveSource(index, 1)"
+                      :disabled="index === entries.length - 1"
+                      class="flex h-8 w-8 items-center justify-center rounded-md border border-slate-200 bg-white text-sm font-black text-slate-700 shadow-block transition hover:-translate-y-0.5 hover:shadow-blockStrong disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:shadow-none"
+                      title="Move down"
+                      aria-label="Move source down"
+                    >↓</button>
+                    <button
+                      type="button"
+                      @click="removeSource(index)"
+                      :disabled="entries.length === 1"
+                      class="flex h-8 w-8 items-center justify-center rounded-md border border-rose-200 bg-white text-sm font-black text-rose-600 shadow-block transition hover:-translate-y-0.5 hover:shadow-blockStrong disabled:cursor-not-allowed disabled:opacity-40 dark:border-rose-900 dark:bg-slate-950 dark:text-rose-300 dark:shadow-none"
+                      title="Remove"
+                      aria-label="Remove source"
+                    >×</button>
+                  </div>
+                </div>
+
+                <div class="grid gap-3 sm:grid-cols-[minmax(0,1fr)_116px]">
+                  <label class="block min-w-0">
+                    <span class="mb-1 block text-xs font-extrabold uppercase text-slate-500 dark:text-slate-400">Variable</span>
+                    <input
+                      type="text"
+                      v-model="entry.name"
+                      class="h-10 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm font-bold text-slate-950 outline-none ring-sky-500 transition focus:ring-2 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                    >
+                  </label>
+                  <label class="block">
+                    <span class="mb-1 block text-xs font-extrabold uppercase text-slate-500 dark:text-slate-400">Count</span>
+                    <input
+                      type="number"
+                      min="1"
+                      step="1"
+                      v-model.number="entry.count"
+                      class="h-10 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 font-mono text-sm font-bold text-slate-950 outline-none ring-sky-500 transition focus:ring-2 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                    >
+                  </label>
+                </div>
+
+                <label class="mt-3 block">
+                  <span class="mb-1 block text-xs font-extrabold uppercase text-slate-500 dark:text-slate-400">Items</span>
+                  <textarea
+                    rows="3"
+                    v-model="entry.itemsText"
+                    class="soft-scrollbar w-full resize-y rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 font-mono text-sm font-bold leading-6 text-slate-950 outline-none ring-sky-500 transition focus:ring-2 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                  ></textarea>
+                </label>
+              </article>
+            </div>
+          </section>
+
+          <section class="overflow-hidden rounded-xl border border-slate-200 bg-white/95 shadow-block transition-colors dark:border-slate-800 dark:bg-slate-900/95 dark:shadow-none">
+            <div class="flex flex-col gap-4 border-b border-slate-200 p-4 dark:border-slate-800 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h2 class="font-display text-2xl font-bold text-slate-950 dark:text-slate-50">Output</h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400">{{ outputMeta }}</p>
+              </div>
+              <div class="inline-flex self-start rounded-lg bg-slate-100 p-1 dark:bg-slate-950">
+                <button
+                  type="button"
+                  @click="activeTab = 'visual'"
+                  class="rounded-md px-3 py-2 text-sm font-extrabold transition"
+                  :class="activeTab === 'visual' ? 'bg-white text-slate-950 shadow-block dark:bg-slate-800 dark:text-white dark:shadow-none' : 'text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white'"
+                >Visual</button>
+                <button
+                  type="button"
+                  @click="activeTab = 'array'"
+                  class="rounded-md px-3 py-2 text-sm font-extrabold transition"
+                  :class="activeTab === 'array' ? 'bg-white text-slate-950 shadow-block dark:bg-slate-800 dark:text-white dark:shadow-none' : 'text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white'"
+                >Array</button>
+                <button
+                  type="button"
+                  @click="activeTab = 'code'"
+                  class="rounded-md px-3 py-2 text-sm font-extrabold transition"
+                  :class="activeTab === 'code' ? 'bg-white text-slate-950 shadow-block dark:bg-slate-800 dark:text-white dark:shadow-none' : 'text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white'"
+                >Code</button>
+              </div>
+            </div>
+
+            <div class="p-4">
+              <section v-show="activeTab === 'visual'" aria-label="Visual output">
+                <div v-if="validationErrors.length" class="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm font-bold leading-6 text-rose-700 dark:border-rose-900 dark:bg-rose-950/40 dark:text-rose-200">
+                  {{ validationErrors.join(" ") }}
+                </div>
+                <div v-else-if="mixed.length === 0" class="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold text-slate-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-400">
+                  No output yet. Add items or adjust the options.
+                </div>
+                <div v-else class="checker min-h-52 rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-950">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span v-for="(item, index) in mixed" :key="`${item.groupKey}-${item.value}-${index}-${shuffleNonce}`" class="contents">
+                      <span
+                        v-show="item.sourceIndex === 0 && index !== 0"
+                        class="mx-1 h-10 w-px bg-slate-300 dark:bg-slate-700"
+                        aria-hidden="true"
+                      ></span>
+                      <span
+                        class="inline-flex min-h-10 min-w-10 max-w-full items-center justify-center rounded-lg px-3 py-2 text-center text-sm font-black shadow-block dark:shadow-none"
+                        :class="palette(item.sourceIndex).token"
+                        :title="item.sourceName"
+                      >{{ item.value }}</span>
+                    </span>
+                  </div>
+                </div>
+              </section>
+
+              <section v-show="activeTab === 'array'" aria-label="Array output">
+                <pre class="soft-scrollbar max-h-[520px] overflow-auto rounded-lg bg-slate-950 p-4 font-mono text-sm leading-7 text-slate-100" v-text="arrayOutput"></pre>
+              </section>
+
+              <section v-show="activeTab === 'code'" aria-label="Generated TypeScript">
+                <div class="mb-3 flex justify-end">
+                  <button
+                    type="button"
+                    @click="copy(codeSample)"
+                    class="inline-flex h-10 items-center gap-2 rounded-lg bg-sky-600 px-3 text-sm font-extrabold text-white shadow-block transition hover:-translate-y-0.5 hover:bg-sky-500 hover:shadow-blockStrong dark:shadow-none"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect width="14" height="14" x="8" y="8" rx="2"></rect>
+                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                    </svg>
+                    <span>Copy code</span>
+                  </button>
+                </div>
+                <pre class="soft-scrollbar max-h-[520px] overflow-auto rounded-lg bg-slate-950 p-4 font-mono text-sm leading-7 text-slate-100"><code v-html="highlightedCode"></code></pre>
+              </section>
+            </div>
+          </section>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    window.addEventListener("load", () => {
+      const { createApp } = Vue;
+
+      createApp({
+        data() {
+          let sourceId = 0;
+          const clone = (value) => JSON.parse(JSON.stringify(value));
+
+          const createSource = (name, count, items, groupId) => ({
+            id: `${name}-${sourceId++}`,
+            name,
+            count,
+            itemsText: items.join("\n"),
+            groupId: groupId || "",
+          });
+
+          const presets = [
+            {
+              id: "photo-ads",
+              name: "2 photos + 1 ad",
+              summary: "A classic feed monetization rhythm.",
+              limitEnabled: false,
+              limitValue: 12,
+              options: { fill: "repeat", shuffle: false },
+              entries: [
+                createSource("photos", 2, ["photo-01", "photo-02", "photo-03", "photo-04", "photo-05", "photo-06"]),
+                createSource("ads", 1, ["ad-01", "ad-02", "ad-03"]),
+              ],
+            },
+            {
+              id: "editorial",
+              name: "4 text + 2 media",
+              summary: "Editorial blocks with gallery breaks.",
+              limitEnabled: false,
+              limitValue: 12,
+              options: { fill: "repeat", shuffle: false },
+              entries: [
+                createSource("paragraphs", 4, ["intro", "context", "quote", "detail", "analysis", "wrap-up", "notes", "links"]),
+                createSource("media", 2, ["image-01", "image-02", "image-03", "image-04"]),
+              ],
+            },
+            {
+              id: "sponsored-slots",
+              name: "Sponsored slots",
+              summary: "Reuse the same array in two positions.",
+              limitEnabled: false,
+              limitValue: 14,
+              options: { fill: "repeat", shuffle: false },
+              entries: [
+                createSource("related", 4, ["rel-01", "rel-02", "rel-03", "rel-04", "rel-05", "rel-06", "rel-07", "rel-08"], "related-shared"),
+                createSource("sponsored", 2, ["sponsor-01", "sponsor-02", "sponsor-03", "sponsor-04"]),
+                createSource("related", 2, ["rel-01", "rel-02", "rel-03", "rel-04", "rel-05", "rel-06", "rel-07", "rel-08"], "related-shared"),
+              ],
+            },
+            {
+              id: "priority-queue",
+              name: "Priority queue",
+              summary: "High-priority work gets more slots.",
+              limitEnabled: true,
+              limitValue: 16,
+              options: { fill: "skip", shuffle: false },
+              entries: [
+                createSource("urgent", 3, ["u-01", "u-02", "u-03", "u-04", "u-05"]),
+                createSource("normal", 1, ["n-01", "n-02", "n-03", "n-04", "n-05", "n-06"]),
+                createSource("backlog", 1, ["b-01", "b-02", "b-03"]),
+              ],
+            },
+            {
+              id: "stop-exhausted",
+              name: "Stop exhausted",
+              summary: "Return when one source runs out.",
+              limitEnabled: true,
+              limitValue: 100,
+              options: { fill: "stop", shuffle: false },
+              entries: [
+                createSource("articles", 2, ["article-01", "article-02", "article-03", "article-04"]),
+                createSource("boosts", 1, ["boost-01"]),
+              ],
+            },
+            {
+              id: "shuffle-drop",
+              name: "Shuffle + skip",
+              summary: "Randomize inputs, then drop empty ones.",
+              limitEnabled: false,
+              limitValue: 9,
+              options: { fill: "skip", shuffle: true },
+              entries: [
+                createSource("primary", 1, ["alpha", "bravo", "charlie"]),
+                createSource("secondary", 2, ["delta", "echo", "foxtrot", "golf", "hotel", "india"]),
+              ],
+            },
+          ];
+
+          return {
+            activeTab: "visual",
+            darkMode: document.documentElement.classList.contains("dark"),
+            entries: clone(presets[0].entries),
+            fillCopy: {
+              repeat: "repeat cycles back to the beginning when a source runs out.",
+              skip: "skip removes exhausted sources and keeps mixing the rest.",
+              stop: "stop returns the result as soon as any source is exhausted.",
+            },
+            limitEnabled: presets[0].limitEnabled,
+            limitValue: presets[0].limitValue,
+            options: clone(presets[0].options),
+            palettes: [
+              { dot: "bg-sky-500", token: "bg-sky-500 text-white" },
+              { dot: "bg-rose-500", token: "bg-rose-500 text-white" },
+              { dot: "bg-amber-400", token: "bg-amber-400 text-slate-950" },
+              { dot: "bg-emerald-500", token: "bg-emerald-500 text-white" },
+              { dot: "bg-violet-500", token: "bg-violet-500 text-white" },
+              { dot: "bg-orange-500", token: "bg-orange-500 text-white" },
+            ],
+            presets,
+            selectedPreset: presets[0].id,
+            shuffleNonce: 0,
+            sourceId,
+            toast: "",
+          };
+        },
+
+        computed: {
+          parsedEntries() {
+            return this.entries.map((entry, index) => ({
+              id: entry.id,
+              groupKey: entry.groupId || entry.id,
+              name: entry.name || `source${index + 1}`,
+              count: this.positiveCount(entry.count),
+              rawCount: entry.count,
+              items: this.parseItems(entry.itemsText),
+              sourceIndex: index,
+            }));
+          },
+
+          validationErrors() {
+            const errors = [];
+
+            if (this.limitEnabled && !this.isValidLimit(this.limitValue)) {
+              errors.push("limit must be a non-negative integer.");
+            }
+
+            this.entries.forEach((entry, index) => {
+              const label = entry.name || `Source ${index + 1}`;
+
+              if (!this.isPositiveInteger(entry.count)) {
+                errors.push(`${label} count must be a positive integer.`);
+              }
+
+              if (this.parseItems(entry.itemsText).length === 0) {
+                errors.push(`${label} needs at least one item.`);
+              }
+            });
+
+            return errors;
+          },
+
+          totalItems() {
+            const seen = new Set();
+            return this.parsedEntries.reduce((sum, entry) => {
+              if (seen.has(entry.groupKey)) return sum;
+              seen.add(entry.groupKey);
+              return sum + entry.items.length;
+            }, 0);
+          },
+
+          targetLength() {
+            return this.limitEnabled && this.isValidLimit(this.limitValue)
+              ? Number(this.limitValue)
+              : this.totalItems;
+          },
+
+          patternSummary() {
+            const pattern = this.parsedEntries
+              .map((entry) => `${entry.count} ${entry.name}`)
+              .join(" -> ");
+            return `${pattern || "No sources"} -> ${this.options.fill}`;
+          },
+
+          mixed() {
+            if (this.validationErrors.length) return [];
+            return this.mix(this.parsedEntries, this.options);
+          },
+
+          outputMeta() {
+            if (this.validationErrors.length) return "Fix validation to generate output.";
+
+            const limitText = this.limitEnabled ? `custom limit ${this.targetLength}` : `default length ${this.totalItems}`;
+            return `${this.mixed.length} items generated from ${this.parsedEntries.length} source${this.parsedEntries.length === 1 ? "" : "s"} with ${limitText}.`;
+          },
+
+          arrayOutput() {
+            if (this.validationErrors.length) return this.validationErrors.join("\n");
+            return JSON.stringify(this.mixed.map((item) => item.value), null, 2);
+          },
+
+          codeSample() {
+            const declarationsByGroup = this.declarationInfo();
+            const declarations = Array.from(declarationsByGroup.values())
+              .map((entry) => `const ${entry.variableName} = ${JSON.stringify(entry.items)};`)
+              .join("\n");
+
+            const tupleArgs = this.parsedEntries.map((entry) => {
+              const declaration = declarationsByGroup.get(entry.groupKey);
+              return `  [${entry.count}, ${declaration.variableName}]`;
+            });
+
+            const optionParts = [];
+            if (this.limitEnabled) optionParts.push(`limit: ${this.isValidLimit(this.limitValue) ? Number(this.limitValue) : this.targetLength}`);
+            if (this.options.shuffle) optionParts.push("shuffle: true");
+            if (this.options.fill !== "repeat") optionParts.push(`fill: "${this.options.fill}"`);
+
+            const optionsArg = optionParts.length ? [`  { ${optionParts.join(", ")} }`] : [];
+            const args = tupleArgs.concat(optionsArg).join(",\n");
+
+            return `import { arrayMixer } from "array-mixer";\n\n${declarations}\n\nconst mixed = arrayMixer(\n${args}\n);`;
+          },
+
+          highlightedCode() {
+            return this.highlightCode(this.codeSample);
+          },
+        },
+
+        methods: {
+          clone(value) {
+            return JSON.parse(JSON.stringify(value));
+          },
+
+          toggleTheme() {
+            this.darkMode = !this.darkMode;
+            document.documentElement.classList.toggle("dark", this.darkMode);
+
+            try {
+              localStorage.setItem("arrayMixerSiteTheme", this.darkMode ? "dark" : "light");
+            } catch {
+              // Theme persistence is optional when storage is unavailable.
+            }
+          },
+
+          palette(index) {
+            return this.palettes[index % this.palettes.length];
+          },
+
+          parseItems(value) {
+            return String(value)
+              .split(/\n|,/)
+              .map((item) => item.trim())
+              .filter(Boolean);
+          },
+
+          isPositiveInteger(value) {
+            return Number.isInteger(Number(value)) && Number(value) > 0;
+          },
+
+          positiveCount(value) {
+            return this.isPositiveInteger(value) ? Number(value) : 1;
+          },
+
+          isValidLimit(value) {
+            return Number.isInteger(Number(value)) && Number(value) >= 0;
+          },
+
+          cleanName(value, index) {
+            const compact = String(value || "")
+              .trim()
+              .replace(/[^a-zA-Z0-9_$]/g, "");
+            return /^[a-zA-Z_$]/.test(compact) ? compact : `source${index + 1}`;
+          },
+
+          declarationInfo() {
+            const byGroup = new Map();
+            const usedNames = new Map();
+
+            this.parsedEntries.forEach((entry, index) => {
+              if (byGroup.has(entry.groupKey)) return;
+
+              const clean = this.cleanName(entry.name, index);
+              const used = usedNames.get(clean) || 0;
+              const variableName = used === 0 ? clean : `${clean}${used + 1}`;
+              usedNames.set(clean, used + 1);
+              byGroup.set(entry.groupKey, { variableName, items: entry.items });
+            });
+
+            return byGroup;
+          },
+
+          seededRandom(seedText) {
+            let seed = 2166136261;
+
+            for (let i = 0; i < seedText.length; i++) {
+              seed ^= seedText.charCodeAt(i);
+              seed = Math.imul(seed, 16777619);
+            }
+
+            return () => {
+              seed += 0x6D2B79F5;
+              let value = seed;
+              value = Math.imul(value ^ (value >>> 15), value | 1);
+              value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+              return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+            };
+          },
+
+          shuffle(items, seedText) {
+            const copy = [...items];
+            const random = this.seededRandom(seedText);
+
+            for (let i = copy.length - 1; i > 0; i--) {
+              const j = Math.floor(random() * (i + 1));
+              [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+
+            return copy;
+          },
+
+          mix(entries, options) {
+            const fill = ["repeat", "skip", "stop"].includes(options.fill) ? options.fill : "repeat";
+            const result = [];
+            const stateByOriginal = new Map();
+            const states = entries.map((entry) => {
+              let state = stateByOriginal.get(entry.groupKey);
+
+              if (!state) {
+                state = {
+                  items: options.shuffle ? this.shuffle(entry.items, `${entry.groupKey}-${this.shuffleNonce}`) : [...entry.items],
+                  consumed: 0,
+                  skipped: false,
+                };
+                stateByOriginal.set(entry.groupKey, state);
+              }
+
+              return state;
+            });
+
+            while (result.length < this.targetLength) {
+              let progressed = false;
+
+              for (let i = 0; i < states.length && result.length < this.targetLength; i++) {
+                const state = states[i];
+                const entry = entries[i];
+
+                if (state.skipped) continue;
+
+                if (state.items.length === 0) {
+                  state.skipped = true;
+                  continue;
+                }
+
+                for (let j = 0; j < entry.count && result.length < this.targetLength; j++) {
+                  const used = state.consumed;
+
+                  if (used >= state.items.length) {
+                    if (fill === "repeat") {
+                      result.push({
+                        value: state.items[used % state.items.length],
+                        sourceName: entry.name,
+                        sourceIndex: i,
+                        groupKey: entry.groupKey,
+                      });
+                      state.consumed += 1;
+                      progressed = true;
+                    } else if (fill === "skip") {
+                      state.skipped = true;
+                      break;
+                    } else {
+                      return result;
+                    }
+                  } else {
+                    result.push({
+                      value: state.items[used],
+                      sourceName: entry.name,
+                      sourceIndex: i,
+                      groupKey: entry.groupKey,
+                    });
+                    state.consumed += 1;
+                    progressed = true;
+                  }
+                }
+              }
+
+              if (!progressed) break;
+            }
+
+            return result;
+          },
+
+          loadPreset(id) {
+            const preset = this.presets.find((item) => item.id === id) || this.presets[0];
+            this.selectedPreset = preset.id;
+            this.entries = this.clone(preset.entries);
+            this.options = this.clone(preset.options);
+            this.limitEnabled = preset.limitEnabled;
+            this.limitValue = preset.limitValue;
+            this.shuffleNonce += 1;
+            this.activeTab = "visual";
+          },
+
+          resetPreset() {
+            this.loadPreset(this.selectedPreset);
+          },
+
+          addSource() {
+            const next = this.entries.length + 1;
+            this.entries.push({
+              id: `custom-${Date.now()}-${this.sourceId++}`,
+              name: `source${next}`,
+              count: 1,
+              itemsText: `item-${next}-01\nitem-${next}-02\nitem-${next}-03`,
+              groupId: "",
+            });
+          },
+
+          removeSource(index) {
+            if (this.entries.length === 1) return;
+            this.entries.splice(index, 1);
+          },
+
+          moveSource(index, direction) {
+            const target = index + direction;
+            if (target < 0 || target >= this.entries.length) return;
+            [this.entries[index], this.entries[target]] = [this.entries[target], this.entries[index]];
+          },
+
+          rerun() {
+            this.shuffleNonce += 1;
+          },
+
+          copy(text) {
+            navigator.clipboard.writeText(text).then(() => {
+              this.toast = "Copied";
+              window.setTimeout(() => {
+                this.toast = "";
+              }, 1400);
+            }).catch(() => {
+              this.toast = "Copy failed";
+              window.setTimeout(() => {
+                this.toast = "";
+              }, 1800);
+            });
+          },
+
+          escapeHtml(value) {
+            return String(value)
+              .replaceAll("&", "&amp;")
+              .replaceAll("<", "&lt;")
+              .replaceAll(">", "&gt;")
+              .replaceAll('"', "&quot;");
+          },
+
+          highlightCode(code) {
+            const stringPattern = /"(?:\\.|[^"\\])*"/g;
+            let html = "";
+            let lastIndex = 0;
+            let match;
+
+            const highlightTokens = (value) => this.escapeHtml(value)
+              .replace(/\b(arrayMixer|import|from|const|true|false|limit|fill|shuffle|\d+)\b/g, (token) => {
+                if (/^\d+$/.test(token)) return `<span class="text-fuchsia-300">${token}</span>`;
+                if (token === "arrayMixer") return `<span class="text-yellow-300">${token}</span>`;
+                if (["limit", "fill", "shuffle"].includes(token)) return `<span class="text-orange-300">${token}</span>`;
+                return `<span class="text-sky-300">${token}</span>`;
+              });
+
+            while ((match = stringPattern.exec(code)) !== null) {
+              html += highlightTokens(code.slice(lastIndex, match.index));
+              html += `<span class="text-emerald-300">${this.escapeHtml(match[0])}</span>`;
+              lastIndex = match.index + match[0].length;
+            }
+
+            html += highlightTokens(code.slice(lastIndex));
+            return html;
+          },
+        },
+      }).mount("#app");
+    });
+  </script>
+</body>
+</html>
