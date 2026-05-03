@@ -1,4 +1,4 @@
-[v-cloak] { display: none !important; }
+[v-cloak] { display: none; }
 
 :root { color-scheme: light; }
 html.dark { color-scheme: dark; }
